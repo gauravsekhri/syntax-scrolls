@@ -33,7 +33,10 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import UserDD from "../UserDD";
 // import { DropdownMenu, DropdownMenuShortcut } from "../ui/dropdown-menu";
+
+type variant = "public" | "auth";
 
 const PageHeader = () => {
   return (
@@ -43,13 +46,21 @@ const PageHeader = () => {
           Syntax Scrolls
         </Link>
 
-        <div className="flex items-center justify-between gap-6">
-          <span className="cursor-pointer">Tech</span>
-          <span className="cursor-pointer">Interviews</span>
+        <div className="flex items-center justify-between gap-5">
+          {/* <span className="cursor-pointer">Tech</span> */}
+          {/* <span className="cursor-pointer">Interviews</span> */}
+          {/* <Link href="/login">
+            <Button variant="link" className="hover:bg-primary/10">
+              Login
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button variant="outline">Create Account</Button>
+          </Link> */}
           <span className="">
             <ModeToggle />
           </span>
-          <span>
+          {/* <span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -71,7 +82,8 @@ const PageHeader = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </span>
+          </span> */}
+          <UserDD userDetails={{}} />
         </div>
       </div>
     </>

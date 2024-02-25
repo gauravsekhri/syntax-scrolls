@@ -116,7 +116,10 @@ export default function Home({
             //     </p>
             //   </div>
             // </div>
-            <div className="space-y-6 mb-4 bg-card p-6 rounded-lg shadow-lg">
+            <div
+              className="space-y-6 mb-4 bg-card p-6 rounded-lg shadow-lg"
+              key={ind}
+            >
               <div>
                 <h2 className="text-2xl font-bold leading-8 tracking-tight">
                   <a
