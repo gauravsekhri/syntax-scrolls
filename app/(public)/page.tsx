@@ -1,24 +1,16 @@
-import PageFooter from "@/components/PageFooter";
-import PageHeader from "@/components/PageHeader";
-import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import TagsScroll from "@/components/TagsScroll";
 import Link from "next/link";
 import TagsBox from "@/components/TagsBox";
+import { fetchAllPublicPosts } from "@/actions/postActions";
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
   searchParams: { tags: string };
 }) {
+  const allPosts = await fetchAllPublicPosts();
+  console.log("allPosts", allPosts);
+
   const data = [
     {
       title: "Release of Tailwind Nextjs Starter Blog v2.0",
@@ -89,33 +81,7 @@ export default function Home({
       <div className="grid grid-cols-12 gap-4 mb-8">
         <TagsBox />
         <div className="col-span-12 md:col-span-9 lg:col-span-6 md:px-4">
-          {/* <div className="font-bold mb-8">Latest</div> */}
-          {/* {[...new Array(20)].map((ele: any, ind: number) => (
-              <div className="w-full border border-gray-400 rounded p-4 mb-4">
-                {ind + 1} - Blog
-              </div>
-            ))} */}
           {data.map((ele: any, ind: number) => (
-            // <div className="bg-card shadow rounded-lg mb-4 p-4">Blog</div>
-            // <div className="relative flex flex-col mb-4 md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto bg-card">
-            //   <div className="w-full md:w-1/3 grid place-items-center">
-            //     <img
-            //       src="https://images.pexels.com/photos/4381392/pexels-photo-4381392.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            //       alt="tailwind logo"
-            //       className="rounded-xl"
-            //     />
-            //   </div>
-            //   <div className="w-full md:w-2/3 flex flex-col space-y-2 px-3">
-            //     <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
-            //       The Majestic and Wonderful Bahamas
-            //     </h3>
-            //     <p className="md:text-sm text-gray-500 text-base">
-            //       The best kept secret of The Bahamas is the country’s sheer
-            //       size and diversity. With 16 major islands, The Bahamas is an
-            //       unmatched destination
-            //     </p>
-            //   </div>
-            // </div>
             <div
               className="space-y-6 mb-4 bg-card p-6 rounded-lg shadow-lg"
               key={ind}
