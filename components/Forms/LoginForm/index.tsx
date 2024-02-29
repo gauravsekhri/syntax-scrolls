@@ -1,12 +1,64 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
+
+  const loginFormSchema = z.object({
+    email: z
+      .string()
+      .min(1, "Email is required.")
+      .email("Please enter valid email."),
+    password: z.string().min(1, "Password is required."),
+  });
+
+  type FormSchemaType = z.infer<typeof loginFormSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(loginFormSchema),
+    // defaultValues: {
+    //   username: "",
+    // },
+  });
+
+  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+    await handleLoginUser(data);
+  };
+
+  const handleLoginUser = async (data: any) => {
+    const response = await signIn("credentials", {
+      email: data?.email ?? "",
+      password: data?.password ?? "",
+      redirect: false,
+    });
+
+    console.log("response", response);
+
+    if (!response?.error && response?.ok) {
+      toast.success("Login successfull");
+      router.push("/");
+    } else {
+      toast.error("Invalid Credentials");
+    }
+  };
+
   return (
     <>
-      <form className="" action="#">
+      <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -16,11 +68,15 @@ const LoginForm = () => {
           </label>
           <Input
             type="email"
-            name="email"
             id="email"
-            // className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@company.com"
+            {...register("email")}
           />
+          {errors.email && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.email?.message}
+            </span>
+          )}
         </div>
         <div className="mb-10">
           <label
@@ -31,11 +87,15 @@ const LoginForm = () => {
           </label>
           <Input
             type="password"
-            name="password"
             id="password"
             placeholder="••••••••"
-            // className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("password")}
           />
+          {errors.password && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.password?.message}
+            </span>
+          )}
         </div>
         {/* <div className="flex items-center justify-between">
                   <div className="flex items-start">

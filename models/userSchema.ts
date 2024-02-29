@@ -4,27 +4,28 @@ const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: true,
+      required: [true, "Please provide fullName"],
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Please provide email"],
       unique: true,
     },
     password: {
       type: String,
-      required: true,
+      required: [true, "Please provide password"],
     },
     isAdmin: {
       type: Boolean,
-      required: true,
+      default: false,
     },
     isKeyAdmin: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   },
   { timestamps: true }
 );
 
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
+export const User =
+  mongoose?.models?.user || mongoose.model("user", userSchema);

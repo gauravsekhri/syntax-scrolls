@@ -1,45 +1,102 @@
+"use client";
+
+import { signupUser } from "@/actions/usersActions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const SignupForm = () => {
+  const router = useRouter();
+
+  const signupFormSchema = z.object({
+    fullName: z.string().min(1, "Full name is required."),
+    email: z
+      .string()
+      .min(1, "Email is required.")
+      .email("Please enter valid email."),
+    password: z.string().min(1, "Password is required."),
+    confirmPassword: z.string().min(1, "Password is required."),
+  });
+
+  type FormSchemaType = z.infer<typeof signupFormSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(signupFormSchema),
+    // defaultValues: {
+    //   username: "",
+    // },
+  });
+
+  const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
+    await handleSignup(data);
+  };
+
+  const handleSignup = async (data: any) => {
+    const register = await signupUser(data);
+    if (register) {
+      reset();
+      toast.success("Signup successful!");
+      router.push("/login");
+    } else {
+      toast.error("Unable to register.");
+    }
+  };
+
   return (
     <>
-      <form className="" action="#">
+      <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Your name
+            Full name
           </label>
           <Input
             type="text"
-            name="fullname"
             id="fullname"
             className="bg-transparent"
-            // className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="John Cena"
+            {...register("fullName")}
           />
+          {errors.fullName && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.fullName?.message}
+            </span>
+          )}
         </div>
         <div className="mb-4">
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Your email
+            Email
           </label>
           <Input
             type="email"
-            name="email"
             id="email"
             className="bg-transparent"
-            // className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@company.com"
+            {...register("email")}
           />
+          {errors.email && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.email?.message}
+            </span>
+          )}
         </div>
-        <div className="mb-10">
+        <div className="mb-4">
           <label
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -48,12 +105,36 @@ const SignupForm = () => {
           </label>
           <Input
             type="password"
-            name="password"
             id="password"
             placeholder="••••••••"
             className="bg-transparent"
-            // className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("password")}
           />
+          {errors.password && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.password?.message}
+            </span>
+          )}
+        </div>
+        <div className="mb-10">
+          <label
+            htmlFor="password"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Confirm Password
+          </label>
+          <Input
+            type="password"
+            id="password"
+            placeholder="••••••••"
+            className="bg-transparent"
+            {...register("confirmPassword")}
+          />
+          {errors.confirmPassword && (
+            <span className="err_msg text-rose-500 mt-2 text-sm 2xl:text-xs block h-full 2xl:leading-4">
+              {errors.confirmPassword?.message}
+            </span>
+          )}
         </div>
         {/* <div className="flex items-center justify-between">
                   <div className="flex items-start">

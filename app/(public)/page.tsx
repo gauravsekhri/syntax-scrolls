@@ -2,14 +2,17 @@ import TagsScroll from "@/components/TagsScroll";
 import Link from "next/link";
 import TagsBox from "@/components/TagsBox";
 import { fetchAllPublicPosts } from "@/actions/postActions";
+import { getServerSession } from "next-auth";
+import authOptions from "@/utils/authOptions";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: { tags: string };
 }) {
-  const allPosts = await fetchAllPublicPosts();
-  console.log("allPosts", allPosts);
+  // const session = await getServerSession(authOptions);
+  // const allPosts = await fetchAllPublicPosts();
+  // console.log("allPosts", allPosts);
 
   const data = [
     {

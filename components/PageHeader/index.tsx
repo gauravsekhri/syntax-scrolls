@@ -38,7 +38,7 @@ import UserDD from "../UserDD";
 
 type variant = "public" | "auth";
 
-const PageHeader = () => {
+const PageHeader = ({ session }: { session: any }) => {
   return (
     <>
       <div className="flex items-center justify-between py-8">
@@ -49,41 +49,24 @@ const PageHeader = () => {
         <div className="flex items-center justify-between gap-5">
           {/* <span className="cursor-pointer">Tech</span> */}
           {/* <span className="cursor-pointer">Interviews</span> */}
-          {/* <Link href="/login">
-            <Button variant="link" className="hover:bg-primary/10">
-              Login
-            </Button>
-          </Link>
-          <Link href="/signup">
-            <Button variant="outline">Create Account</Button>
-          </Link> */}
+
           <span className="">
             <ModeToggle />
           </span>
-          {/* <span>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <MoreVertical className="h-4 w-4" />
-                  <span className="sr-only">More</span>
+          {!session ? (
+            <>
+              <Link href="/login">
+                <Button variant="link" className="hover:bg-primary/10">
+                  Login
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem className="cursor-pointer hover:text-rose-500">
-                  <Link href="/features">Explore Features</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer hover:text-rose-500">
-                  <Link
-                    href="https://gaurav-sekhri.netlify.app/"
-                    target="_blank"
-                  >
-                    About Me
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </span> */}
-          <UserDD userDetails={{}} />
+              </Link>
+              <Link href="/signup">
+                <Button variant="outline">Create Account</Button>
+              </Link>
+            </>
+          ) : (
+            <UserDD userDetails={session?.user ?? {}} />
+          )}
         </div>
       </div>
     </>

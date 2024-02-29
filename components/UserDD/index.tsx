@@ -16,8 +16,15 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { LogOut, PlusSquare, ScrollText, Settings } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import authOptions from "@/utils/authOptions";
 
-const UserDD = ({ userDetails }: { userDetails: any }) => {
+const UserDD = async ({ userDetails }: { userDetails: any }) => {
+  // const session = await getServerSession(authOptions);
+
+  console.log(userDetails);
+
   return (
     <>
       <DropdownMenu>
@@ -32,9 +39,11 @@ const UserDD = ({ userDetails }: { userDetails: any }) => {
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">Gaurav Sekhri</p>
+              <p className="text-sm font-medium leading-none">
+                {userDetails?.fullName ?? ""}
+              </p>
               <p className="text-xs leading-none text-muted-foreground">
-                gaurav@sekhri.com
+                {userDetails?.email ?? ""}
               </p>
             </div>
           </DropdownMenuLabel>
@@ -60,7 +69,10 @@ const UserDD = ({ userDetails }: { userDetails: any }) => {
             </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onClick={() => signOut()}
+          >
             <LogOut className="mr-2 h-4 w-4" />
             Log out
           </DropdownMenuItem>
