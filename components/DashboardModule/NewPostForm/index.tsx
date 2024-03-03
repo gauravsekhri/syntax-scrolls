@@ -13,6 +13,7 @@ import { postPayload } from "@/interfaces";
 import { newPost } from "@/actions/postActions";
 import { toast } from "sonner";
 import { getRouteLink } from "@/utils/helperFunctions";
+import MultipleSelector, { Option } from "@/components/ui/multi-select";
 
 type payloadKey = "content" | "routeLink" | "metaDescription" | "keyWords";
 
@@ -69,6 +70,20 @@ const NewPostForm = () => {
     }
   };
 
+  const OPTIONS: Option[] = [
+    { label: "nextjs", value: "Nextjs" },
+    { label: "Vite", value: "vite" },
+    { label: "Nuxt", value: "nuxt" },
+    { label: "Vue", value: "vue" },
+    { label: "Remix", value: "remix" },
+    { label: "Svelte", value: "svelte" },
+    { label: "Angular", value: "angular" },
+    { label: "Ember", value: "ember" },
+    { label: "React", value: "react" },
+    { label: "Gatsby", value: "gatsby" },
+    { label: "Astro", value: "astro" },
+  ];
+
   return (
     <>
       <Tabs defaultValue="createPost" className="w-full">
@@ -104,6 +119,18 @@ const NewPostForm = () => {
               <div className="mb-12">Update your post's SEO settings.</div>
 
               <div className="grid gap-12">
+                <div className="grid w-full items-center gap-1.5">
+                  <Label>Select Tags</Label>
+                  <MultipleSelector
+                    defaultOptions={OPTIONS}
+                    placeholder="Select tags..."
+                    emptyIndicator={
+                      <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                        No results found.
+                      </p>
+                    }
+                  />
+                </div>
                 <div className="grid w-full items-center gap-1.5">
                   <Label htmlFor="routeLink">Route Link</Label>
                   <Input
