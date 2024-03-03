@@ -21,10 +21,6 @@ import { getServerSession } from "next-auth";
 import authOptions from "@/utils/authOptions";
 
 const UserDD = async ({ userDetails }: { userDetails: any }) => {
-  // const session = await getServerSession(authOptions);
-
-  console.log(userDetails);
-
   return (
     <>
       <DropdownMenu>
@@ -49,12 +45,12 @@ const UserDD = async ({ userDetails }: { userDetails: any }) => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <Link href="/newpost">
+            {/* <Link href="/newpost">
               <DropdownMenuItem className="cursor-pointer">
                 <PlusSquare className="mr-2 h-4 w-4" />
                 Create Post
               </DropdownMenuItem>
-            </Link>
+            </Link> */}
             <Link href="/postslist">
               <DropdownMenuItem className="cursor-pointer">
                 <ScrollText className="mr-2 h-4 w-4" />

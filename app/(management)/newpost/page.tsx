@@ -1,11 +1,11 @@
 import NewPostForm from "@/components/DashboardModule/NewPostForm";
+import { Button } from "@/components/ui/button";
 import React from "react";
 
-const NewBlogPage = () => {
+const NewBlogPage = async () => {
   return (
     <>
-      <div className="text-3xl font-bold my-3">Create Post</div>
-      <div className="min-h-screen pb-14 grid grid-cols-12 gap-4">
+      <div className="min-h-screen pb-14 grid grid-cols-12 gap-4 ">
         <div className="col-span-12 lg:col-span-8 bg-card p-6 rounded-lg shadow-lg border dark:border-gray-800">
           <NewPostForm />
         </div>

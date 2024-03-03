@@ -57,3 +57,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.bn-editor {
+  background: transparent !important;
+  padding-inline: 0px !important;
+}

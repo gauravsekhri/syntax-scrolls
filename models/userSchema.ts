@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please provide email"],
       unique: true,
     },
+    designation: {
+      type: String,
+      required: false,
+      default: "Creative Writer",
+    },
     password: {
       type: String,
       required: [true, "Please provide password"],
@@ -20,6 +25,10 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
     isKeyAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isVisitor: {
       type: Boolean,
       default: false,
     },

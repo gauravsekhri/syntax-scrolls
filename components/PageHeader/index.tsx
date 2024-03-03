@@ -30,6 +30,7 @@ import {
   Cloud,
   MoreVertical,
   LogOut,
+  PencilLine,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -65,7 +66,15 @@ const PageHeader = ({ session }: { session: any }) => {
               </Link>
             </>
           ) : (
-            <UserDD userDetails={session?.user ?? {}} />
+            <>
+              <Link href={"/newpost"}>
+                <Button variant="outline">
+                  <PencilLine className="mr-2" />
+                  Write Post
+                </Button>
+              </Link>
+              <UserDD userDetails={session?.user ?? {}} />
+            </>
           )}
         </div>
       </div>

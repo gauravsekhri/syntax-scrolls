@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { useTheme } from "next-themes";
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 
 interface EditorProps {
-  onChange: (value: string) => void;
+  onChange?: (value: { htmlContent: string; blocksContent: string }) => void;
   initialContent?: string;
   editable?: boolean;
 }
@@ -21,8 +21,21 @@ const CustomTextEditor = ({
   const editor: BlockNoteEditor = useBlockNote({
     editable,
     initialContent: initialContent ? JSON.parse(initialContent) : undefined,
-    onEditorContentChange: (editor) => {
-      onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+    onEditorContentChange: async (editor) => {
+      const htmlContent: string = await editor.blocksToHTMLLossy(
+        editor.topLevelBlocks
+      );
+      const blocksContent: string = JSON.stringify(
+        editor.topLevelBlocks,
+        null,
+        2
+      );
+
+      onChange &&
+        onChange({
+          htmlContent,
+          blocksContent,
+        });
     },
   });
 
@@ -37,4 +50,4 @@ const CustomTextEditor = ({
   );
 };
 
-export default CustomTextEditor;
+export default memo(CustomTextEditor);

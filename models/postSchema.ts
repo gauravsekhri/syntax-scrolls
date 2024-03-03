@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    title: {
+    postTitle: {
       type: String,
       required: [true, "Please provide title."],
     },
@@ -27,9 +27,13 @@ const postSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    content: {
+    htmlContent: {
       type: String,
-      required: [true, "Please provide content."],
+      required: [true, "Please provide html content."],
+    },
+    blocksContent: {
+      type: String,
+      required: [true, "Please provide blocks content."],
     },
     createdBy: {
       type: String,
