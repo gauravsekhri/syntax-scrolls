@@ -18,7 +18,6 @@ export async function loginUser(userPayload: any) {
 }
 
 export async function signupUser(userPayload: any) {
-  console.log("userPayload", userPayload);
   try {
     const newUser = await new User({ ...userPayload });
     const userResp = await newUser.save();

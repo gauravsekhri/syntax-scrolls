@@ -47,7 +47,6 @@ export const fetchAllPublicPosts = async () => {
 };
 
 export async function newPost(postPayload: postPayload) {
-  console.log("userPayload", postPayload);
   const postId = await uuidv4();
 
   try {
@@ -65,7 +64,6 @@ export async function newPost(postPayload: postPayload) {
 }
 
 export async function getPostByLink(routeLink: string) {
-  console.log(routeLink);
   try {
     const postDetails = await Posts.aggregate([
       {
@@ -103,5 +101,25 @@ export async function getPostByLink(routeLink: string) {
   } catch (err: any) {
     console.log(err.message);
     return null;
+  }
+}
+
+export async function getUserPosts(email: string) {
+  try {
+    const postsList = await Posts.aggregate([
+      {
+        $match: {
+          createdBy: email,
+        },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+    ]);
+
+    return postsList ?? [];
+  } catch (err: any) {
+    console.log(err.message);
+    return [];
   }
 }

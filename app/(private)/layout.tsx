@@ -13,9 +13,11 @@ export default async function RootLayout({
 
   return (
     <>
-      <PageHeader session={session} />
-      {children}
-      <PageFooter />
+      <div className="flex flex-col min-h-screen">
+        <PageHeader session={session} />
+        {children}
+        <PageFooter />
+      </div>
     </>
   );
 }

@@ -10,6 +10,7 @@ export default async function Home({
 }: {
   searchParams: { tags: string };
 }) {
+  // const session = await getServerSession(authOptions);
   const allPosts = await fetchAllPublicPosts();
 
   return (

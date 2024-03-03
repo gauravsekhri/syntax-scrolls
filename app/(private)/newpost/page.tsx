@@ -34,6 +34,5 @@ const NewBlogPage = async () => {
     </>
   );
 };
-// 24 9.8% 10%
 
 export default NewBlogPage;

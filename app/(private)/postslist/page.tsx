@@ -20,6 +20,10 @@ import {
 } from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
+import { getServerSession } from "next-auth";
+import authOptions from "@/utils/authOptions";
+import { getUserPosts } from "@/actions/postActions";
+import { formatPostDate } from "@/utils/helperFunctions";
 
 const invoices = [
   {
@@ -109,7 +113,12 @@ const postsData = [
   },
 ];
 
-const PostslistPage = () => {
+const PostslistPage = async () => {
+  const session = await getServerSession(authOptions);
+
+  const userPosts = await getUserPosts(session?.user?.email ?? "");
+  console.log("userPosts", userPosts);
+
   return (
     <>
       <div className="text-3xl font-bold my-3">My Posts</div>
@@ -125,18 +134,24 @@ const PostslistPage = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {postsData.map((post, ind) => (
-              <TableRow key={ind}>
+            {userPosts?.map((post, ind) => (
+              <TableRow key={post?.postId}>
                 <TableCell>{ind + 1}</TableCell>
-                <TableCell>{post.title}</TableCell>
-                <TableCell>{post.tags}</TableCell>
-                <TableCell>{post.createdAt}</TableCell>
+                <TableCell className="truncate max-w-28">
+                  {post?.postTitle}
+                </TableCell>
+                <TableCell>{post?.tags.join(",")}</TableCell>
+                <TableCell>{formatPostDate(post?.createdAt)}</TableCell>
                 <TableCell className="text-right flex gap-2 justify-end">
-                  <Button variant="outline" size="icon">
-                    <Pencil className="h-4 w-4" />
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Pencil className="h-3 w-3" />
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Trash2 className="h-4 w-4" />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 hover:bg-primary hover:text-white"
+                  >
+                    <Trash2 className="h-3 w-3" />
                   </Button>
                 </TableCell>
               </TableRow>

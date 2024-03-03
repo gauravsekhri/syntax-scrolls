@@ -59,7 +59,6 @@ const NewPostForm = () => {
       postTitle,
       ...postPayload,
     };
-    console.log(finalPayload);
 
     const resp = await newPost(finalPayload);
 

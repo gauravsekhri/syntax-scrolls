@@ -46,8 +46,6 @@ const LoginForm = () => {
       redirect: false,
     });
 
-    console.log("response", response);
-
     if (!response?.error && response?.ok) {
       toast.success("Login successfull");
       router.push("/");
