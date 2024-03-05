@@ -21,6 +21,7 @@ import {
   ScrollText,
   Settings,
   ShieldCheck,
+  User2Icon,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -64,10 +65,10 @@ const UserDD = ({ userDetails }: { userDetails: any }) => {
                   </DropdownMenuItem>
                 </Link>
               )}
-              <Link href="/postslist">
+              <Link href={"/user/" + userDetails?.email}>
                 <DropdownMenuItem className="cursor-pointer">
-                  <ScrollText className="mr-2 h-4 w-4" />
-                  My Posts
+                  <User2Icon className="mr-2 h-4 w-4" />
+                  My Profile
                 </DropdownMenuItem>
               </Link>
               <Link href="/settings">

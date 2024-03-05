@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import TagChip from "./TagChip";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Input } from "../ui/input";
 
 const TagsBox = () => {
   const searchParams = useSearchParams();
@@ -11,6 +12,7 @@ const TagsBox = () => {
   const params = new URLSearchParams(searchParams);
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>("");
 
   useEffect(() => {
     setIsMounted(true);
@@ -39,7 +41,7 @@ const TagsBox = () => {
       <div className="col-span-3 relative md:sticky top-6 left-0 right-0 h-fit hidden md:block">
         <div className="rounded p-4 bg-card">
           <span className="font-bold text-lg">Tags</span>
-          <div className="relative">
+          {/* <div className="relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -55,11 +57,12 @@ const TagsBox = () => {
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
-            <input
-              className="mt-4 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
+            <Input
+              // className="mt-4 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
+              className="mt-4 w-full pl-8 h-9"
               placeholder="Search tags"
             />
-          </div>
+          </div> */}
           {/* {isMounted ? ( */}
           <div className="flex gap-2 my-4 w-fit flex-wrap">
             {[

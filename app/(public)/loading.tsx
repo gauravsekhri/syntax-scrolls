@@ -1,4 +1,5 @@
 import TagsBox from "@/components/TagsBox";
+import TagsScroll from "@/components/TagsScroll";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
@@ -16,7 +17,8 @@ const loading = () => {
         </p>
       </div>
 
-      <Skeleton className="h-16 w-full mb-8" />
+      {/* <Skeleton className="h-16 w-full mb-8" /> */}
+      <TagsScroll />
 
       <div className="grid grid-cols-12 gap-4 mb-8">
         <TagsBox />
