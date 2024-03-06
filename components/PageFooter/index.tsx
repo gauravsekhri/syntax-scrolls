@@ -8,7 +8,7 @@ const PageFooter = () => {
           &copy; 2024 Gaurav Sekhri . All rights reserved.
         </p>
         <div className="flex justify-center items-center space-x-1">
-          <a
+          {/* <a
             href="#"
             data-tooltip-target="tooltip-facebook"
             className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
@@ -27,7 +27,7 @@ const PageFooter = () => {
               />
             </svg>
             <span className="sr-only">Facebook</span>
-          </a>
+          </a> */}
           <div
             id="tooltip-facebook"
             role="tooltip"
@@ -91,7 +91,7 @@ const PageFooter = () => {
             Star us on GitHub
             <div className="tooltip-arrow" data-popper-arrow></div>
           </div>
-          <a
+          {/* <a
             href="#"
             data-tooltip-target="tooltip-dribbble"
             className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
@@ -110,7 +110,7 @@ const PageFooter = () => {
               />
             </svg>
             <span className="sr-only">Dribbble</span>
-          </a>
+          </a> */}
           <div
             id="tooltip-dribbble"
             role="tooltip"

@@ -2,6 +2,7 @@
 
 import { User } from "@/models/userSchema";
 import { connect } from "@/utils/dbConfig";
+import { getRouteLink, makeid } from "@/utils/helperFunctions";
 
 connect();
 
@@ -19,10 +20,37 @@ export async function loginUser(userPayload: any) {
 
 export async function signupUser(userPayload: any) {
   try {
-    const newUser = await new User({ ...userPayload });
+    let newUsername = getRouteLink(userPayload.fullName) + "-" + makeid(5);
+
+    const finalPayload = {
+      username: newUsername,
+      ...userPayload,
+    };
+
+    const newUser = await new User({ ...finalPayload });
     const userResp = await newUser.save();
 
     return userResp ?? null;
+  } catch (err: any) {
+    console.log(err.message);
+    return null;
+  }
+}
+
+export async function updateUserDetails(userPayload: any) {
+  try {
+    const updateResp = await User.updateOne(
+      {
+        email: userPayload?.email,
+      },
+      {
+        fullName: userPayload.fullName,
+        avatarURL: userPayload.avatarURL,
+        designation: userPayload.designation,
+      }
+    );
+
+    return updateResp ?? null;
   } catch (err: any) {
     console.log(err.message);
     return null;

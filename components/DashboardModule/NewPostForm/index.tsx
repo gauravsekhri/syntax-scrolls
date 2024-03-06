@@ -17,7 +17,7 @@ import MultipleSelector, { Option } from "@/components/ui/multi-select";
 
 type payloadKey = "content" | "routeLink" | "metaDescription" | "keyWords";
 
-const NewPostForm = () => {
+const NewPostForm = ({ session }: { session: any }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("");
   const [postPayload, setPostPayload] = useState<postPayload>({
@@ -26,6 +26,7 @@ const NewPostForm = () => {
     keyWords: "",
     htmlContent: "",
     blocksContent: "",
+    createdBy: session?.user?.email,
   });
 
   useEffect(() => {

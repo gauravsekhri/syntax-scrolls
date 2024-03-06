@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide fullName"],
     },
+    username: {
+      type: String,
+      required: [true, "Please provide username"],
+    },
     email: {
       type: String,
       required: [true, "Please provide email"],
@@ -15,6 +19,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
       default: "Creative Writer",
+    },
+    avatarURL: {
+      type: String,
+      required: false,
+      default:
+        "https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg",
     },
     password: {
       type: String,
@@ -31,6 +41,10 @@ const userSchema = new mongoose.Schema(
     isVisitor: {
       type: Boolean,
       default: false,
+    },
+    lastActiveTime: {
+      type: Date,
+      default: new Date(),
     },
   },
   { timestamps: true }

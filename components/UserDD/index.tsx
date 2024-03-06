@@ -24,9 +24,12 @@ import {
   User2Icon,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { getInitials } from "@/utils/helperFunctions";
 
 const UserDD = ({ userDetails }: { userDetails: any }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  const initials = getInitials(userDetails?.fullName ?? "");
 
   useEffect(() => {
     setIsMounted(true);
@@ -39,8 +42,11 @@ const UserDD = ({ userDetails }: { userDetails: any }) => {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-                <AvatarFallback>GS</AvatarFallback>
+                <AvatarImage
+                  src={userDetails?.avatarURL}
+                  alt={initials ?? "Sekhri"}
+                />
+                <AvatarFallback>{initials}</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>

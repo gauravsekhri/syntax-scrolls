@@ -4,4 +4,5 @@ export interface postPayload {
   keyWords: string;
   htmlContent: string;
   blocksContent: string;
+  createdBy: string;
 }

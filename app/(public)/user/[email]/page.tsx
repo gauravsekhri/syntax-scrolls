@@ -17,10 +17,15 @@ import React from "react";
 import { toast } from "sonner";
 
 const SettingsPage = async ({ params }: { params: { email: string } }) => {
-  const session = await getServerSession(authOptions);
-  const userPosts = await getUserPosts(
-    params.email.replaceAll("%40", "@") ?? ""
-  );
+  const session: any = await getServerSession(authOptions);
+  const currEmail = params.email.replaceAll("%40", "@") ?? "";
+  const userPosts = await getUserPosts(currEmail);
+
+  console.log(session);
+
+  const isOwnProfile = session?.user?.email == currEmail;
+
+  console.log(session?.user?.email, params.email);
 
   return (
     <>
@@ -34,17 +39,18 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
           <div className="absolute -bottom-16 flex h-[187px] w-[187px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
             <img
               className="h-full w-full rounded-full"
-              src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
+              // src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
+              src={session?.user?.avatarURL}
               alt=""
             />
           </div>
         </div>
         <div className="mt-20 flex flex-col items-center">
           <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            Gaurav Sekhri
+            {session?.user?.fullName ?? ""}
           </h4>
           <p className="text-base font-normal text-gray-600">
-            Fullstack Developer
+            {session?.user?.designation ?? ""}
           </p>
         </div>
         <div className="mt-6 mb-3 flex gap-14 md:!gap-14">
@@ -70,11 +76,11 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
       </div>
       <div className="grid grid-cols-4 gap-4 px-24 mb-20">
         {userPosts?.map((postElem: any) => (
-          <div className="relative py-6 pl-6 pr-7 bg-card rounded-sm shadow-lg flex flex-col min-h-56">
+          <div className="relative py-6 pl-6 pr-7 bg-card rounded-lg border border-slate-300 dark:border-none flex flex-col min-h-56">
             <div className="text-md w-3/4 dark:hover:text-rose-300 cursor-pointer">
               {postElem.postTitle}
             </div>
-            {session && (
+            {isOwnProfile && (
               <div className="absolute top-0 right-0 cursor-pointer">
                 <DDMenu />
               </div>
@@ -89,8 +95,8 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
             </div>
           </div>
         ))}
-        {session && userPosts.length > 0 && (
-          <div className="p-6 bg-card rounded-sm shadow-lg flex flex-col justify-center items-center">
+        {isOwnProfile && userPosts.length > 0 && (
+          <div className="p-6 bg-card rounded-sm border border-slate-300 dark:border-none flex flex-col justify-center items-center">
             <Link href="/newpost" className="hover:text-primary cursor-pointer">
               <PlusCircle className="w-16 h-16" />
               <div className="mt-4">New Post</div>

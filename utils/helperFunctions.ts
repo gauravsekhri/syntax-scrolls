@@ -18,6 +18,20 @@ export const getRouteLink = (sentence: string) => {
   }
 };
 
+export const getInitials = (name: any) => {
+  try {
+    if (!name) return "";
+    return name
+      .match(/(\b\S)?/g)
+      .join("")
+      .match(/(^\S|\S$)?/g)
+      .join("");
+  } catch (err: any) {
+    console.log(err.message);
+    return name;
+  }
+};
+
 export const formatPostDate = (payload: string) => {
   const months = [
     "Jan",
@@ -47,4 +61,17 @@ export const formatPostDate = (payload: string) => {
   const formattedDate = `${day} ${months[monthIndex]} ${year}`;
 
   return formattedDate;
+};
+
+export const makeid = (length: number) => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
 };

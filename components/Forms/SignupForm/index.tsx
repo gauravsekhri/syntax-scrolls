@@ -14,15 +14,20 @@ import { z } from "zod";
 const SignupForm = () => {
   const router = useRouter();
 
-  const signupFormSchema = z.object({
-    fullName: z.string().min(1, "Full name is required."),
-    email: z
-      .string()
-      .min(1, "Email is required.")
-      .email("Please enter valid email."),
-    password: z.string().min(1, "Password is required."),
-    confirmPassword: z.string().min(1, "Password is required."),
-  });
+  const signupFormSchema = z
+    .object({
+      fullName: z.string().min(1, "Full name is required."),
+      email: z
+        .string()
+        .min(1, "Email is required.")
+        .email("Please enter valid email."),
+      password: z.string().min(1, "Password is required."),
+      confirmPassword: z.string().min(1, "Password is required."),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: "Passwords do not match",
+      path: ["confirmPassword"], // path of error
+    });
 
   type FormSchemaType = z.infer<typeof signupFormSchema>;
 

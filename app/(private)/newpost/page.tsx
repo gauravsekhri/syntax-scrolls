@@ -1,13 +1,17 @@
 import NewPostForm from "@/components/DashboardModule/NewPostForm";
 import { Button } from "@/components/ui/button";
+import authOptions from "@/utils/authOptions";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 const NewBlogPage = async () => {
+  const session = await getServerSession(authOptions);
+
   return (
     <>
       <div className="min-h-screen pb-14 grid grid-cols-12 gap-4 ">
         <div className="col-span-12 lg:col-span-8 bg-card p-6 rounded-lg shadow-lg border dark:border-gray-800">
-          <NewPostForm />
+          <NewPostForm session={session} />
         </div>
         <div className="col-span-12 lg:col-span-4 bg-card p-6 rounded-lg relative md:sticky top-6 left-0 right-0 h-fit hidden md:block shadow-lg border dark:border-gray-800">
           <h1 className="font-bold text-xl mb-6">Tips</h1>

@@ -36,9 +36,13 @@ const authOptions: NextAuthOptions = {
       if (user) {
         token._id = user?._id;
         token.fullName = user?.fullName;
+        token.username = user?.username;
         token.email = user?.email;
         token.isAdmin = user?.isAdmin == true ? true : false;
         token.isKeyAdmin = user?.isKeyAdmin == true ? true : false;
+        token.isVisitor = user?.isVisitor == true ? true : false;
+        token.designation = user?.designation;
+        token.avatarURL = user?.avatarURL;
       }
       return token;
     },
@@ -46,9 +50,13 @@ const authOptions: NextAuthOptions = {
       if (token) {
         session.user._id = token?._id;
         session.user.fullName = token?.fullName;
+        session.user.username = token?.username;
         session.user.email = token?.email;
         session.user.isAdmin = token?.isAdmin == true ? true : false;
         session.user.isKeyAdmin = token?.isKeyAdmin == true ? true : false;
+        session.user.isVisitor = token?.isVisitor == true ? true : false;
+        session.user.designation = token?.designation;
+        session.user.avatarURL = token?.avatarURL;
       }
       return session;
     },
