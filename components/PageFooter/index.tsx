@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const PageFooter = () => {
@@ -36,8 +37,9 @@ const PageFooter = () => {
             Like us on Facebook
             <div className="tooltip-arrow" data-popper-arrow></div>
           </div>
-          <a
-            href="#"
+          <Link
+            href="https://twitter.com/_Sekhri_"
+            target="_blank"
             data-tooltip-target="tooltip-twitter"
             className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
           >
@@ -54,7 +56,7 @@ const PageFooter = () => {
               />
             </svg>
             <span className="sr-only">Twitter</span>
-          </a>
+          </Link>
           <div
             id="tooltip-twitter"
             role="tooltip"
@@ -63,8 +65,9 @@ const PageFooter = () => {
             Follow us on Twitter
             <div className="tooltip-arrow" data-popper-arrow></div>
           </div>
-          <a
-            href="#"
+          <Link
+            href="https://github.com/gauravsekhri"
+            target="_blank"
             data-tooltip-target="tooltip-github"
             className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
           >
@@ -82,7 +85,7 @@ const PageFooter = () => {
               />
             </svg>
             <span className="sr-only">Github</span>
-          </a>
+          </Link>
           <div
             id="tooltip-github"
             role="tooltip"

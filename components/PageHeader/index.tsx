@@ -12,15 +12,21 @@ const PageHeader = ({ session }: { session: any }) => {
   return (
     <>
       <div className="flex items-center justify-between py-8">
-        <Link href="/" className="font-bold">
-          Syntax Scrolls
-        </Link>
+        <div className="flex items-center gap-8">
+          <Link href="/" className="font-bold">
+            Syntax Scrolls
+          </Link>
+          <MasterSearch />
+        </div>
 
         <div className="flex items-center justify-between gap-4">
           {/* <span className="cursor-pointer">Tech</span> */}
           {/* <span className="cursor-pointer">Interviews</span> */}
 
-          <MasterSearch />
+          <span className="">
+            <ModeToggle />
+          </span>
+
           {!session ? (
             <>
               <Link href="/login">
@@ -40,9 +46,7 @@ const PageHeader = ({ session }: { session: any }) => {
                   Write
                 </Button>
               </Link>
-              <span className="">
-                <ModeToggle />
-              </span>
+
               <UserDD userDetails={session?.user ?? {}} />
             </>
           )}

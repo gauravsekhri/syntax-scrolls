@@ -121,7 +121,12 @@ const LoginForm = () => {
                     Forgot password?
                   </a>
                 </div> */}
-        <Button type="submit" className="w-full mb-6">
+        <Button
+          type="submit"
+          className="w-full mb-6"
+          loading={isSubmitting}
+          disabled={isSubmitting}
+        >
           Sign in
         </Button>
         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
