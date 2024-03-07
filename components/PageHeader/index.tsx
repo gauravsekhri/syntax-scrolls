@@ -23,7 +23,7 @@ const PageHeader = ({ session }: { session: any }) => {
       <Sheet>
         <div className="flex items-center justify-between lg:py-8 px-4 py-4">
           <div className="flex items-center gap-4 lg:gap-8">
-            <SheetTrigger>
+            <SheetTrigger className="block sm:hidden">
               <Menu />
             </SheetTrigger>
             <Link href="/" className="font-bold">

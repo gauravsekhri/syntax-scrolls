@@ -5,6 +5,7 @@ import { fetchAllPublicPosts } from "@/actions/postActions";
 import { formatPostDate } from "@/utils/helperFunctions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 export default async function Home({
   searchParams,
@@ -16,22 +17,8 @@ export default async function Home({
 
   return (
     <>
-      <div className="relative m-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="absolute left-2 top-3 h-4 w-4 text-muted-foreground"
-        >
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </svg>
+      <div className="relative m-4 block sm:hidden">
+        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           // className="mt-4 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
           className="w-full pl-8 h-10"
@@ -44,7 +31,7 @@ export default async function Home({
           The Untold Syntax: Behind the{" "}
           <span className="dark:text-primary">Code</span>
         </h1>
-        <p className="max-w-sm lg:max-w-none mb-8 text-md md:text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        <p className="max-w-sm lg:max-w-none mb-8 text-center mx-auto text-md md:text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           Master the unseen forces. Go beyond the keyboard. Dive into the
           fascinating world of how code truly works.
         </p>
