@@ -48,7 +48,12 @@ const PageHeader = ({ session }: { session: any }) => {
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button variant="outline">Create Account</Button>
+                  <Button
+                    variant="outline"
+                    className="py-1.5 px-2 sm:py-2 sm:px-4"
+                  >
+                    Create Account
+                  </Button>
                 </Link>
               </>
             ) : (

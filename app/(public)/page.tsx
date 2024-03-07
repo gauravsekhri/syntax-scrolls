@@ -31,7 +31,7 @@ export default async function Home({
           The Untold Syntax: Behind the{" "}
           <span className="dark:text-primary">Code</span>
         </h1>
-        <p className="max-w-sm lg:max-w-none mb-8 text-center mx-auto text-md md:text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        <p className="text-sm max-w-sm lg:max-w-none mb-8 text-center mx-auto text-md md:text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           Master the unseen forces. Go beyond the keyboard. Dive into the
           fascinating world of how code truly works.
         </p>
