@@ -75,18 +75,18 @@ const PageHeader = ({ session }: { session: any }) => {
           <SheetHeader>
             <SheetTitle className="text-left">Syntax Scrolls</SheetTitle>
             <SheetDescription className="pt-6">
-              <div className="flex items-center px-4 py-2 mb-2">
+              <Link href="/" className="flex items-center px-4 py-2 mb-2">
                 <Home className="mr-4 w-4 h-4" />
                 <span className="text-lg">Home</span>
-              </div>
-              <div className="flex items-center px-4 py-2 mb-2">
+              </Link>
+              <Link href="#" className="flex items-center px-4 py-2 mb-2">
                 <Users className="mr-4 w-4 h-4" />
                 <span className="text-lg">People</span>
-              </div>
-              <div className="flex items-center px-4 py-2 mb-2">
+              </Link>
+              <Link href="#" className="flex items-center px-4 py-2 mb-2">
                 <Search className="mr-4 w-4 h-4" />
                 <span className="text-lg">Search</span>
-              </div>
+              </Link>
               <Separator className="my-8" />
               <div className="flex items-center gap-6 justify-between dark:bg-card bg-primary/10 px-4 py-2 rounded-lg">
                 <span className="text-lg">Try theme</span>
