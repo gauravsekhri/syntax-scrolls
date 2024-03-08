@@ -58,12 +58,12 @@ const PageHeader = ({ session }: { session: any }) => {
               </>
             ) : (
               <>
-                <Link href={"/newpost"}>
+                {/* <Link href={"/newpost"}>
                   <Button variant="outline" className="text-xs h-8 px-3">
                     <PencilLine className="mr-2 text-xs h-4 w-4" />
                     Write
                   </Button>
-                </Link>
+                </Link> */}
 
                 <UserDD userDetails={session?.user ?? {}} />
               </>
@@ -92,6 +92,14 @@ const PageHeader = ({ session }: { session: any }) => {
                 <span className="text-lg">Try theme</span>
                 <ModeToggle />
               </div>
+              {session && (
+                <Link href="/newpost">
+                  <div className="mt-12 py-8 px-10 mx-auto w-fit flex justify-center flex-col items-center shadow-md shadow-primary dark:bg-card bg-primary/10 rounded-lg">
+                    <PencilLine className="h-6 w-6 mb-4" />
+                    <div className="text-xl">Write</div>
+                  </div>
+                </Link>
+              )}
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

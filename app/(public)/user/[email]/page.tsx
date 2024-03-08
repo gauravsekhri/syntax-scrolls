@@ -30,29 +30,24 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
   return (
     <>
       <div className="relative flex flex-col items-center rounded-[20px] w-full mx-auto p-4 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
-        <div className="relative flex h-64 w-full justify-center rounded-xl bg-gradient-to-t from-white dark:from-[#0c0a09] to-red-600 dark:to-red-600">
-          {/* <img
-              src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/banner.ef572d78f29b0fee0a09.png"
-              className="absolute flex h-64 w-full justify-center rounded-xl bg-cover"
-            /> */}
-
-          <div className="absolute -bottom-16 flex h-[187px] w-[187px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img
-              className="h-full w-full rounded-full"
-              // src="https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"
-              src={session?.user?.avatarURL}
-              alt=""
-            />
+        <div className="relative flex h-40 sm:h-64 mb-14 w-full justify-center rounded-xl bg-gradient-to-t from-white dark:from-[#0c0a09] to-red-600 dark:to-red-600">
+          <div className="absolute flex flex-col items-center -bottom-16 ">
+            <div className="flex h-[100px] w-[100px] sm:h-[187px] sm:w-[187px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
+              <img
+                className="h-full w-full rounded-full"
+                src={session?.user?.avatarURL}
+                alt=""
+              />
+            </div>
+            <h4 className="text-xl font-bold text-navy-700 dark:text-white">
+              {session?.user?.fullName ?? ""}
+            </h4>
+            <p className="text-base font-normal text-gray-600">
+              {session?.user?.designation ?? ""}
+            </p>
           </div>
         </div>
-        <div className="mt-20 flex flex-col items-center">
-          <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-            {session?.user?.fullName ?? ""}
-          </h4>
-          <p className="text-base font-normal text-gray-600">
-            {session?.user?.designation ?? ""}
-          </p>
-        </div>
+
         <div className="mt-6 mb-3 flex gap-14 md:!gap-14">
           <div className="flex flex-col items-center justify-center">
             <p className="text-2xl font-bold text-navy-700 dark:text-white">
@@ -74,9 +69,9 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
             </div> */}
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 px-24 mb-20">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-24 mb-20">
         {userPosts?.map((postElem: any) => (
-          <div className="relative py-6 pl-6 pr-7 bg-card rounded-lg border border-slate-300 dark:border-none flex flex-col min-h-56">
+          <div className="relative p-2 pt-10 sm:py-6 sm:pl-6 sm:pr-7 bg-card rounded-lg border border-slate-300 dark:border-none flex flex-col min-h-56">
             <div className="text-md w-3/4 dark:hover:text-rose-300 cursor-pointer">
               {postElem.postTitle}
             </div>
@@ -85,7 +80,7 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
                 <DDMenu />
               </div>
             )}
-            <div className="text-sm flex gap-3 my-4">
+            <div className="text-sm flex flex-wrap gap-3 my-4 leading-[0.7]">
               <div className="text-primary uppercase">NEXTJS</div>
               <div className="text-primary uppercase">ReactJS</div>
               <div className="text-primary uppercase">Javascript</div>

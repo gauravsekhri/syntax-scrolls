@@ -36,7 +36,7 @@ const UserDetailsForm = ({ session }: { session: any }) => {
 
   return (
     <>
-      <div className="w-full max-w-lg rounded-lg shadow-lg bg-card py-8">
+      <div className="w-full max-w-lg rounded-lg shadow-lg bg-card py-8 mx-8">
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center">
             <img
