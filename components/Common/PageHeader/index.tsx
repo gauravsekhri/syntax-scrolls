@@ -4,7 +4,6 @@ import { Home, Menu, PencilLine, Search, Users } from "lucide-react";
 import { Button } from "../../ui/button";
 import Link from "next/link";
 import UserDD from "./UserDD";
-import MasterSearch from "../MasterSearch";
 import {
   Sheet,
   SheetContent,
@@ -14,7 +13,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "../../ui/separator";
-import { Input } from "../../ui/input";
 import SearchBar from "../SearchBar";
 
 type variant = "auth" | "public" | "private";
