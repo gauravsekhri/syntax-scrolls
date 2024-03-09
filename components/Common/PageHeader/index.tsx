@@ -68,7 +68,10 @@ const PageHeader = ({
                 ) : (
                   <>
                     <Link href="/login" className="hidden lg:block">
-                      <Button variant="link" className="hover:bg-primary/10">
+                      <Button
+                        variant="link"
+                        className="hover:bg-primary/10 h-8"
+                      >
                         Login
                       </Button>
                     </Link>
