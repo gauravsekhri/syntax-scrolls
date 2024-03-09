@@ -68,3 +68,48 @@ export async function getUserDetails(email: string) {
     return null;
   }
 }
+
+export async function searchUsers(searchText: string) {
+  try {
+    const userDetails = await User.aggregate([
+      {
+        $match: {
+          $or: [
+            {
+              fullName: {
+                $regex: searchText,
+                $options: "i",
+              },
+            },
+            {
+              email: {
+                $regex: searchText,
+                $options: "i",
+              },
+            },
+            {
+              designation: {
+                $regex: searchText,
+                $options: "i",
+              },
+            },
+          ],
+        },
+      },
+      {
+        $project: {
+          fullName: 1,
+          username: 1,
+          email: 1,
+          designation: 1,
+          avatarURL: 1,
+          createdAt: 1,
+        },
+      },
+    ]);
+
+    return userDetails;
+  } catch {
+    return [];
+  }
+}

@@ -37,6 +37,7 @@ export const fetchAllPublicPosts = async () => {
           postDetails: 1,
           "userDetails.fullName": 1,
           "userDetails.email": 1,
+          "userDetails.avatarURL": 1,
         },
       },
     ]);
@@ -118,6 +119,74 @@ export async function getUserPosts(email: string) {
     ]);
 
     return postsList ?? [];
+  } catch (err: any) {
+    console.log(err.message);
+    return [];
+  }
+}
+
+export async function searchPosts(searchText: string) {
+  try {
+    const posts = await Posts.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              isPublished: true,
+            },
+            {
+              $or: [
+                {
+                  postTitle: {
+                    $regex: searchText,
+                    $options: "i",
+                  },
+                },
+                {
+                  description: {
+                    $regex: searchText,
+                    $options: "i",
+                  },
+                },
+                {
+                  createdBy: {
+                    $regex: searchText,
+                    $options: "i",
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+      {
+        $addFields: {
+          postDetails: "$$ROOT",
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "createdBy",
+          foreignField: "email",
+          as: "userDetails",
+        },
+      },
+      { $unwind: "$userDetails" },
+      {
+        $project: {
+          postDetails: 1,
+          "userDetails.fullName": 1,
+          "userDetails.email": 1,
+          "userDetails.avatarURL": 1,
+        },
+      },
+    ]);
+
+    return posts;
   } catch (err: any) {
     console.log(err.message);
     return [];

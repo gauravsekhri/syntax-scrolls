@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-const SearchBar = () => {
+const SearchBar = ({ usedIn }: { usedIn: "header" | "searchPage" }) => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -24,7 +25,12 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="border border-gray-300 rounded-lg hidden sm:flex bg-card dark:border-none">
+      <div
+        className={twMerge(
+          "border border-gray-300 rounded-lg bg-card dark:border-none",
+          usedIn == "header" ? "hidden sm:flex" : "flex sm:hidden"
+        )}
+      >
         <Input
           className="w-full text-xs h-8 border-transparent bg-transparent focus:border-transparent focus-visible:border-transparent focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
           placeholder="Search anything..."

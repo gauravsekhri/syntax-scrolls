@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "../../ui/separator";
 import { Input } from "../../ui/input";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 type variant = "auth" | "public" | "private";
 
@@ -37,8 +37,7 @@ const PageHeader = ({
             <Link href="/" className="font-bold">
               Syntax Scrolls
             </Link>
-            {/* <MasterSearch /> */}
-            <SearchBar />
+            <SearchBar usedIn="header" />
           </div>
 
           <div className="flex items-center justify-between gap-3 sm:gap-4">
@@ -57,20 +56,35 @@ const PageHeader = ({
 
             {!session ? (
               <>
-                <Link href="/login" className="hidden lg:block">
-                  <Button variant="link" className="hover:bg-primary/10">
-                    Login
-                  </Button>
-                </Link>
+                {variant == "auth" ? (
+                  <>
+                    <Link href="/features">
+                      <Button
+                        variant="outline"
+                        className="px-2 sm:py-2 sm:px-4 text-xs h-8"
+                      >
+                        Explore Features
+                      </Button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login" className="hidden lg:block">
+                      <Button variant="link" className="hover:bg-primary/10">
+                        Login
+                      </Button>
+                    </Link>
 
-                <Link href="/signup">
-                  <Button
-                    variant="outline"
-                    className="px-2 sm:py-2 sm:px-4 text-xs h-8"
-                  >
-                    Create Account
-                  </Button>
-                </Link>
+                    <Link href="/signup">
+                      <Button
+                        variant="outline"
+                        className="px-2 sm:py-2 sm:px-4 text-xs h-8"
+                      >
+                        Create Account
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </>
             ) : (
               <>

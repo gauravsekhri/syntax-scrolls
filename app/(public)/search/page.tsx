@@ -9,24 +9,30 @@ import SearchCategories from "@/components/SearchModule/SearchCategories";
 import UserCard from "@/components/SearchModule/UserCard";
 import PostCard from "@/components/HomeScreenModule/PostCard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { searchPosts } from "@/actions/postActions";
+import { searchUsers } from "@/actions/usersActions";
+import SearchBar from "@/components/Common/SearchBar";
 
-const SearchPage = ({ searchParams }: any) => {
+const SearchPage = async ({ searchParams }: any) => {
   const searchText = searchParams?.text ?? "";
   const tabSelection = searchParams?.tab ?? "posts";
 
   let finalData: Array<any> = [];
 
-  // if(tabSelection == "posts"){
-  //   finalData = await
-  // }
+  if (tabSelection == "posts") {
+    finalData = await searchPosts(searchText);
+  } else if (tabSelection == "people") {
+    finalData = await searchUsers(searchText);
+  }
 
   return (
     <>
       <div>
-        <div className="max-w-5xl mx-4 sm:mx-auto py-14">
-          <div className="sm:hidden grid w-full sm:w-[500px] p-1 bg-muted dark:bg-card grid-cols-3 rounded-lg text-muted-foreground">
+        <div className="max-w-5xl mx-4 sm:mx-auto py-10">
+          <SearchBar usedIn="searchPage" />
+          <div className="sm:hidden mt-7 grid w-full sm:w-[500px] p-1 bg-muted dark:bg-card grid-cols-3 rounded-lg text-muted-foreground">
             <Link
-              href="/search?tab=posts"
+              href={`/search?text=${searchText}&tab=posts`}
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "posts"
@@ -37,7 +43,7 @@ const SearchPage = ({ searchParams }: any) => {
               Posts
             </Link>
             <Link
-              href="/search?tab=people"
+              href={`/search?text=${searchText}&tab=people`}
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "people"
@@ -48,7 +54,7 @@ const SearchPage = ({ searchParams }: any) => {
               People
             </Link>
             <Link
-              href="/search?tab=tags"
+              href={`/search?text=${searchText}&tab=tags`}
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "tags"
@@ -65,21 +71,18 @@ const SearchPage = ({ searchParams }: any) => {
               <SearchCategories searchParams={searchParams} />
             </div>
             <div className="col-span-12 lg:col-span-8 py-10 sm:py-0">
-              <PostCard
-                postDetails={{
-                  postTitle: "Up Your Wordle Game with Array Filtering",
-                  description:
-                    "This project and the components are written in TypeScript. We recommend using TypeScript for your project as well. However we provide a JavaScript version of the components as well. The JavaScript version is available via the cli.",
-                  createdAt: "6 March 2024",
-                  routeLink: "test",
-                  tags: ["Javascript"],
-                }}
-                userDetails={{
-                  avatarURL: "https://github.com/shadcn.png",
-                  fullName: "Gaurav Sekhri",
-                }}
-              />
-              <UserCard />
+              {finalData?.length == 0 && (
+                <div className="text-gray-300 text-xl sm:text-4xl italic font-extrabold flex justify-center items-center py-28 bg-muted rounded-lg">
+                  No data found {":("}
+                </div>
+              )}
+              {finalData.map((dataObject: any) =>
+                tabSelection == "posts" ? (
+                  <PostCard {...dataObject} />
+                ) : (
+                  <UserCard {...dataObject} />
+                )
+              )}
             </div>
           </div>
         </div>
