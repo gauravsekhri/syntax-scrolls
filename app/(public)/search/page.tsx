@@ -36,7 +36,7 @@ const SearchPage = async ({ searchParams }: any) => {
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "posts"
-                  ? "bg-white dark:bg-black text-black"
+                  ? "bg-white dark:bg-black text-black dark:text-white"
                   : ""
               )}
             >
@@ -47,7 +47,7 @@ const SearchPage = async ({ searchParams }: any) => {
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "people"
-                  ? "bg-white dark:bg-black text-black"
+                  ? "bg-white dark:bg-black text-black dark:text-white"
                   : ""
               )}
             >
@@ -58,7 +58,7 @@ const SearchPage = async ({ searchParams }: any) => {
               className={twMerge(
                 "px-3 py-1.5 rounded-md text-center text-sm",
                 tabSelection == "tags"
-                  ? "bg-white dark:bg-black text-black"
+                  ? "bg-white dark:bg-black text-black dark:text-white"
                   : ""
               )}
             >
@@ -72,7 +72,7 @@ const SearchPage = async ({ searchParams }: any) => {
             </div>
             <div className="col-span-12 lg:col-span-8 py-10 sm:py-0">
               {finalData?.length == 0 && (
-                <div className="text-gray-300 text-xl sm:text-4xl italic font-extrabold flex justify-center items-center py-28 bg-muted rounded-lg">
+                <div className="text-gray-300 dark:text-gray-700 text-lg sm:text-4xl italic font-extrabold flex justify-center items-center py-28 bg-muted rounded-lg">
                   No data found {":("}
                 </div>
               )}
