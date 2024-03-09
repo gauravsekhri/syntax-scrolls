@@ -16,12 +16,25 @@ const SignupForm = () => {
 
   const signupFormSchema = z
     .object({
-      fullName: z.string().min(1, "Full name is required."),
+      fullName: z
+        .string()
+        .min(1, "Full name is required.")
+        .max(16, "maximum 16 characters allowed"),
       email: z
         .string()
         .min(1, "Email is required.")
         .email("Please enter valid email."),
-      password: z.string().min(1, "Password is required."),
+      password: z
+        .string()
+        .min(6, "minimum 6 characters required")
+        .max(32, "maximum 32 characters allowed")
+        .regex(new RegExp(".*[A-Z].*"), "must contain 1 uppercase letter")
+        .regex(new RegExp(".*[a-z].*"), "must contain 1 lowercase letter")
+        .regex(new RegExp(".*[0-9].*"), "must contain 1 number")
+        .regex(
+          new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
+          "must contain 1 special character."
+        ),
       confirmPassword: z.string().min(1, "Password is required."),
     })
     .refine((data) => data.password === data.confirmPassword, {
@@ -64,7 +77,7 @@ const SignupForm = () => {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-1 sm:mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Full name
           </label>
@@ -73,6 +86,7 @@ const SignupForm = () => {
             id="fullname"
             className="bg-transparent"
             placeholder="John Cena"
+            maxLength={16}
             {...register("fullName")}
           />
           {errors.fullName && (
@@ -84,7 +98,7 @@ const SignupForm = () => {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-1 sm:mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Email
           </label>
@@ -104,14 +118,15 @@ const SignupForm = () => {
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-1 sm:mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Password
           </label>
           <Input
             type="password"
             id="password"
-            placeholder="••••••••"
+            placeholder="Enter Password"
+            maxLength={32}
             className="bg-transparent"
             {...register("password")}
           />
@@ -124,14 +139,15 @@ const SignupForm = () => {
         <div className="mb-10">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-1 sm:mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Confirm Password
           </label>
           <Input
             type="password"
             id="password"
-            placeholder="••••••••"
+            placeholder="Confirm Password"
+            maxLength={32}
             className="bg-transparent"
             {...register("confirmPassword")}
           />

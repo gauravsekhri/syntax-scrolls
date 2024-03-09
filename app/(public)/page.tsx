@@ -17,14 +17,14 @@ export default async function Home({
 
   return (
     <>
-      <div className="relative m-4 block sm:hidden">
+      {/* <div className="relative m-4 block sm:hidden">
         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           // className="mt-4 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pl-8"
           className="w-full pl-8 h-10"
           placeholder="Search anything..."
         />
-      </div>
+      </div> */}
 
       <div className="py-8 px-4 mx-auto xl:max-w-screen-xl text-center lg:pt-16 lg:pb-8 lg:px-12">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

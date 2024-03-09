@@ -56,3 +56,15 @@ export async function updateUserDetails(userPayload: any) {
     return null;
   }
 }
+
+export async function getUserDetails(email: string) {
+  try {
+    const userDetails = await User.findOne({ email: email }).select(
+      "-password"
+    );
+
+    return userDetails;
+  } catch {
+    return null;
+  }
+}

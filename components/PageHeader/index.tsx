@@ -32,7 +32,7 @@ const PageHeader = ({ session }: { session: any }) => {
             <MasterSearch />
           </div>
 
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
             {/* <span className="cursor-pointer">Tech</span> */}
             {/* <span className="cursor-pointer">Interviews</span> */}
 
@@ -45,6 +45,15 @@ const PageHeader = ({ session }: { session: any }) => {
                 <Link href="/login" className="hidden lg:block">
                   <Button variant="link" className="hover:bg-primary/10">
                     Login
+                  </Button>
+                </Link>
+                <Link href="/search" className="dden lg:block">
+                  <Button
+                    variant="outline"
+                    className="hover:bg-primary/10"
+                    size="icon"
+                  >
+                    <Search className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href="/signup">
@@ -79,13 +88,16 @@ const PageHeader = ({ session }: { session: any }) => {
                 <Home className="mr-4 w-4 h-4" />
                 <span className="text-lg">Home</span>
               </Link>
-              <Link href="#" className="flex items-center px-4 py-2 mb-2">
-                <Users className="mr-4 w-4 h-4" />
-                <span className="text-lg">People</span>
-              </Link>
-              <Link href="#" className="flex items-center px-4 py-2 mb-2">
+              <Link href="/search" className="flex items-center px-4 py-2 mb-2">
                 <Search className="mr-4 w-4 h-4" />
                 <span className="text-lg">Search</span>
+              </Link>
+              <Link
+                href="/search?tab=people"
+                className="flex items-center px-4 py-2 mb-2"
+              >
+                <Users className="mr-4 w-4 h-4" />
+                <span className="text-lg">People</span>
               </Link>
               <Separator className="my-8" />
               <div className="flex items-center gap-6 justify-between dark:bg-card bg-primary/10 px-4 py-2 rounded-lg">

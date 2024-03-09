@@ -28,7 +28,7 @@ const SignupPage = () => {
           </div>
         </div>
       </div> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 smmb-32 py-16 md:py-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 sm:gap-4 sm:mb-32 pt-10 pb-16 md:py-32">
         <div className="col-span-1 flex flex-col justify-center">
           <div className="mx-auto py-6 sm:py-0">
             <h1 className="text-3xl lg:text-5xl font-bold lg:font-extrabold mb-6">
