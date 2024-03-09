@@ -1,11 +1,12 @@
-import TagsScroll from "@/components/TagsScroll";
 import Link from "next/link";
-import TagsBox from "@/components/TagsBox";
 import { fetchAllPublicPosts } from "@/actions/postActions";
 import { formatPostDate } from "@/utils/helperFunctions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import TagsScroll from "@/components/HomeScreenModule/TagsScroll";
+import TagsBox from "@/components/HomeScreenModule/TagsBox";
+import PostCard from "@/components/HomeScreenModule/PostCard";
 
 export default async function Home({
   searchParams,
@@ -43,44 +44,10 @@ export default async function Home({
         <TagsBox />
         <div className="col-span-12 px-6 lg:px-0 md:col-span-9 lg:col-span-6 md:px-4">
           {allPosts?.map((ele: any, ind: number) => (
-            <div
-              className="space-y-6 mb-4 bg-card p-3 lg:p-6 rounded-lg shadow-lg"
-              key={ind}
-            >
-              <div>
-                <h2 className="text-xl lg:text-2xl font-bold leading-8 tracking-tight">
-                  <Link
-                    className="text-gray-900 dark:text-gray-100 dark:hover:text-rose-300"
-                    href={"/blog/" + ele?.postDetails?.routeLink}
-                  >
-                    {ele?.postDetails?.postTitle}
-                  </Link>
-                </h2>
-                <div className="flex flex-wrap">
-                  {ele?.postDetails?.tags.map((tagLabel: any) => (
-                    <Link
-                      className="mr-3 text-sm font-medium uppercase text-primary hover:text-primary-600 dark:hover:text-primary-400"
-                      href="/tags/next-js"
-                    >
-                      {tagLabel}
-                    </Link>
-                  ))}
-                  <Link
-                    className="mr-3 text-sm font-medium uppercase text-primary hover:text-primary-600 dark:hover:text-primary-400"
-                    href="/tags/next-js"
-                  >
-                    #javascript
-                  </Link>
-                </div>
-              </div>
-              <div className="prose max-w-none text-gray-500 dark:text-gray-400 line-clamp-3 min-h-12">
-                {ele?.postDetails?.metaDescription}
-              </div>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>{formatPostDate(ele?.postDetails?.createdAt)}</span>
-                <span className="italic">{ele?.userDetails?.fullName}</span>
-              </div>
-            </div>
+            <PostCard
+              postDetails={ele?.postDetails ?? {}}
+              userDetails={ele?.userDetails ?? ""}
+            />
           ))}
         </div>
         <div className="col-span-3 relative md:sticky top-6 left-0 right-0 h-fit hidden lg:block">
@@ -88,11 +55,11 @@ export default async function Home({
             <div className="font-bold text-lg">Featured Blogs</div>
             <Link href="#" className="block my-4 hover:underline">
               <span className="text-primary">{">>"}</span>{" "}
-              <span>Release of Tailwind Nextjs Starter Blog v2.0</span>
+              <span>Release of NextJS 14 - All you need to know</span>
             </Link>
             <Link href="#" className="block my-4 hover:underline">
               <span className="text-primary">{">>"}</span>{" "}
-              <span>Release of Tailwind Nextjs Starter Blog v2.0</span>
+              <span>Shadcn UI just launched its new components!</span>
             </Link>
           </div>
         </div>

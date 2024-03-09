@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import PageHeader from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
+import PageHeader from "@/components/Common/PageHeader";
+import PageFooter from "@/components/Common/PageFooter";
 import { getServerSession } from "next-auth";
 import authOptions from "@/utils/authOptions";
 
@@ -20,7 +20,7 @@ export default async function RootLayout({
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <PageHeader session={session} />
+        <PageHeader session={session} variant="public" />
         {children}
         <PageFooter />
       </div>

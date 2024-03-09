@@ -1,9 +1,9 @@
 import React from "react";
 import { ModeToggle } from "../ThemeButton";
 import { Home, Menu, PencilLine, Search, Users } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import Link from "next/link";
-import UserDD from "../UserDD";
+import UserDD from "./UserDD";
 import MasterSearch from "../MasterSearch";
 import {
   Sheet,
@@ -13,11 +13,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
+import { Input } from "../../ui/input";
+import SearchBar from "./SearchBar";
 
-type variant = "public" | "auth";
+type variant = "auth" | "public" | "private";
 
-const PageHeader = ({ session }: { session: any }) => {
+const PageHeader = ({
+  session,
+  variant,
+}: {
+  session: any;
+  variant: variant;
+}) => {
   return (
     <>
       <Sheet>
@@ -29,16 +37,23 @@ const PageHeader = ({ session }: { session: any }) => {
             <Link href="/" className="font-bold">
               Syntax Scrolls
             </Link>
-            <MasterSearch />
+            {/* <MasterSearch /> */}
+            <SearchBar />
           </div>
 
-          <div className="flex items-center justify-between gap-2 sm:gap-4">
-            {/* <span className="cursor-pointer">Tech</span> */}
-            {/* <span className="cursor-pointer">Interviews</span> */}
-
+          <div className="flex items-center justify-between gap-3 sm:gap-4">
             <span className="hidden lg:block">
               <ModeToggle />
             </span>
+            <Link href="/search" className="block sm:hidden">
+              <Button
+                variant="outline"
+                className="hover:bg-primary/10 h-8 w-8"
+                size="icon"
+              >
+                <Search className="h-4 w-4" />
+              </Button>
+            </Link>
 
             {!session ? (
               <>
@@ -47,19 +62,11 @@ const PageHeader = ({ session }: { session: any }) => {
                     Login
                   </Button>
                 </Link>
-                <Link href="/search" className="dden lg:block">
-                  <Button
-                    variant="outline"
-                    className="hover:bg-primary/10"
-                    size="icon"
-                  >
-                    <Search className="h-4 w-4" />
-                  </Button>
-                </Link>
+
                 <Link href="/signup">
                   <Button
                     variant="outline"
-                    className="py-1.5 px-2 sm:py-2 sm:px-4"
+                    className="px-2 sm:py-2 sm:px-4 text-xs h-8"
                   >
                     Create Account
                   </Button>

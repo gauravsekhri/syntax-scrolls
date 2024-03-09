@@ -1,5 +1,5 @@
-import TagsBox from "@/components/TagsBox";
-import TagsScroll from "@/components/TagsScroll";
+import TagsBox from "@/components/HomeScreenModule/TagsBox";
+import TagsScroll from "@/components/HomeScreenModule/TagsScroll";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 

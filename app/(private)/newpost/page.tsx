@@ -1,4 +1,4 @@
-import NewPostForm from "@/components/DashboardModule/NewPostForm";
+import NewPostForm from "@/components/Forms/NewPostForm";
 import { Button } from "@/components/ui/button";
 import authOptions from "@/utils/authOptions";
 import { getServerSession } from "next-auth";

@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/Common/PageHeader";
 import authOptions from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 
@@ -17,7 +17,7 @@ export default async function RootLayout({
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <PageHeader session={session} />
+        <PageHeader session={session} variant="private" />
         {children}
       </div>
     </>
