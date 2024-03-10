@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import authOptions from "@/utils/authOptions";
 import { formatPostDate } from "@/utils/helperFunctions";
 import { MoreVertical, PlusCircle } from "lucide-react";
@@ -60,17 +61,17 @@ const SettingsPage = async ({ params }: { params: { email: string } }) => {
             <p className="text-sm font-normal text-gray-600">Posts</p>
           </div>
           {/* <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-navy-700 dark:text-white">
-                9.7K
-              </p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-navy-700 dark:text-white">
-                434
-              </p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div> */}
+            <p className="text-2xl font-bold text-navy-700 dark:text-white">
+              9.7K
+            </p>
+            <p className="text-sm font-normal text-gray-600">Followers</p>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-2xl font-bold text-navy-700 dark:text-white">
+              434
+            </p>
+            <p className="text-sm font-normal text-gray-600">Following</p>
+          </div> */}
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-24 mb-20">

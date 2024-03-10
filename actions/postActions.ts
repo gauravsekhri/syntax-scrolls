@@ -7,12 +7,18 @@ import { v4 as uuidv4 } from "uuid";
 
 connect();
 
-export const fetchAllPublicPosts = async () => {
+export const fetchAllPublicPosts = async (tags: string[]) => {
   try {
     const posts = await Posts.aggregate([
       {
         $match: {
           isPublished: true,
+          ...(tags &&
+            tags.length > 0 && {
+              tags: {
+                $in: tags,
+              },
+            }),
         },
       },
       {
@@ -94,6 +100,7 @@ export async function getPostByLink(routeLink: string) {
           postDetails: 1,
           "userDetails.fullName": 1,
           "userDetails.email": 1,
+          "userDetails.avatarURL": 1,
         },
       },
     ]);

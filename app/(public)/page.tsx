@@ -14,7 +14,12 @@ export default async function Home({
   searchParams: { tags: string };
 }) {
   // const session = await getServerSession(authOptions);
-  const allPosts = await fetchAllPublicPosts();
+
+  const allTags =
+    searchParams?.tags && searchParams?.tags?.length > 0
+      ? searchParams?.tags?.split(",")
+      : [];
+  const allPosts = await fetchAllPublicPosts(allTags);
 
   return (
     <>
@@ -43,6 +48,11 @@ export default async function Home({
       <div className="grid grid-cols-12 gap-4 mb-8">
         <TagsBox />
         <div className="col-span-12 px-6 lg:px-0 md:col-span-9 lg:col-span-6 md:px-4">
+          {allPosts?.length == 0 && (
+            <div className="text-gray-300 dark:text-gray-700 text-lg sm:text-4xl italic font-extrabold flex justify-center items-center py-28 bg-muted rounded-lg">
+              No data found {":("}
+            </div>
+          )}
           {allPosts?.map((ele: any, ind: number) => (
             <PostCard
               postDetails={ele?.postDetails ?? {}}
@@ -64,6 +74,8 @@ export default async function Home({
           </div>
         </div>
       </div>
+
+      {/* <Skeleton className="h-[40px] m-4 block sm:hidden" /> */}
     </>
   );
 }

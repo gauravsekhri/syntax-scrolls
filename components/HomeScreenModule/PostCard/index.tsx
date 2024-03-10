@@ -16,6 +16,7 @@ interface IPostInfo {
 interface IUserInfo {
   fullName: string;
   avatarURL: string;
+  email: string;
 }
 
 interface IPostCard {
@@ -40,7 +41,7 @@ const PostCard = (payload: IPostCard) => {
             </Avatar>
             <div className="flex flex-col text-gray-500">
               <Link
-                href="#"
+                href={`/user/${userDetails?.email}`}
                 className="text-sm hover:text-black dark:hover:text-white"
               >
                 {userDetails?.fullName ?? ""}
@@ -57,7 +58,7 @@ const PostCard = (payload: IPostCard) => {
         </div>
         <Link
           href={`/blog/${postDetails?.routeLink}`}
-          className="text-xl sm:text-2xl font-bold hover:text-primary/50 my-4 dark:hover:text-primary/80 transition-colors duration-300 line-clamp-3"
+          className="text-xl sm:text-2xl font-bold hover:text-primary/50 my-4 dark:hover:text-primary/80 transition-colors duration-300 line-clamp-3 w-fit"
         >
           {postDetails?.postTitle ?? ""}
         </Link>

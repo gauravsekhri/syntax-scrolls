@@ -4,6 +4,7 @@ import PageHeader from "@/components/Common/PageHeader";
 import PageFooter from "@/components/Common/PageFooter";
 import { getServerSession } from "next-auth";
 import authOptions from "@/utils/authOptions";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Syntax Scrolls",
@@ -20,8 +21,8 @@ export default async function RootLayout({
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <PageHeader session={session} variant="public" />
+      <PageHeader session={session} variant="public" />
+      <div className="flex flex-col min-h-screen pt-24">
         {children}
         <PageFooter />
       </div>

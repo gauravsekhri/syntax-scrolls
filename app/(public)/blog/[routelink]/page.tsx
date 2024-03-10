@@ -1,10 +1,7 @@
 import { getPostByLink } from "@/actions/postActions";
-import CustomTextEditor from "@/components/CustomTextEditor";
-import TagsBox from "@/components/TagsBox";
 import PostReadyOnly from "@/components/PublicPostModule/PostReadyOnly";
 import React from "react";
 import AuthorCard from "@/components/PublicPostModule/AuthorCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { redirect } from "next/navigation";
 import Head from "next/head";
 import type { Metadata, ResolvingMetadata } from "next";

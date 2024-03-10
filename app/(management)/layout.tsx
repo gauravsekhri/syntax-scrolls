@@ -16,10 +16,8 @@ export default async function RootLayout({
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <PageHeader session={session} variant="private" />
-        {children}
-      </div>
+      <PageHeader session={session} variant="private" />
+      <div className="flex flex-col min-h-screen pt-24">{children}</div>
     </>
   );
 }

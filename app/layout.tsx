@@ -19,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <main className="container px-0 md:px-8 mx-auto">{children}</main>
+          <main className="container px-0 md:px-8 mx-auto overflow-hidden">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

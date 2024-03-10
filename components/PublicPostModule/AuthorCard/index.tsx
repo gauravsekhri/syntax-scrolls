@@ -6,7 +6,7 @@ const AuthorCard = ({ userDetails }: { userDetails: any }) => {
     <>
       <div className="flex flex-col justify-center p-12 shadow-md rounded-lg sm:px-12 dark:bg-card dark:text-gray-100">
         <img
-          src={userDetails?.img}
+          src={userDetails?.avatarURL}
           alt={userDetails?.fullName}
           className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
         />
