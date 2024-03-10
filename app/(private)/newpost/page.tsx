@@ -9,7 +9,7 @@ const NewBlogPage = async () => {
 
   return (
     <>
-      <div className="min-h-screen pb-14 grid grid-cols-12 gap-4 ">
+      <div className="min-h-screen pb-14 grid grid-cols-12 gap-4 mt-8">
         <div className="col-span-12 lg:col-span-8 bg-card p-6 rounded-lg shadow-lg border dark:border-gray-800">
           <NewPostForm session={session} />
         </div>
