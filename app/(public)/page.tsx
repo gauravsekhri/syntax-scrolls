@@ -7,6 +7,7 @@ import { Search } from "lucide-react";
 import TagsScroll from "@/components/HomeScreenModule/TagsScroll";
 import TagsBox from "@/components/HomeScreenModule/TagsBox";
 import PostCard from "@/components/HomeScreenModule/PostCard";
+import Image from "next/image";
 
 export default async function Home({
   searchParams,
@@ -47,7 +48,7 @@ export default async function Home({
 
       <div className="grid grid-cols-12 gap-4 mb-8">
         <TagsBox />
-        <div className="col-span-12 px-6 lg:px-0 md:col-span-9 lg:col-span-6 md:px-4">
+        <div className="col-span-12 px-6 lg:px-0 md:col-span-9 lg:col-span-6 md:px-4 pb-60">
           {allPosts?.length == 0 && (
             <div className="text-gray-300 dark:text-gray-700 text-lg sm:text-4xl italic font-extrabold flex justify-center items-center py-28 bg-muted rounded-lg">
               No data found {":("}
@@ -60,8 +61,8 @@ export default async function Home({
             />
           ))}
         </div>
-        <div className="col-span-3 relative md:sticky top-6 left-0 right-0 h-fit hidden lg:block">
-          <div className="rounded p-4 mb-6 bg-card">
+        <div className="col-span-3 left-0 right-0 h-fit hidden lg:block">
+          <div className="rounded p-4 mb-4 bg-card md:sticky top-36">
             <div className="font-bold text-lg">Featured Blogs</div>
             <Link href="#" className="block my-4 hover:underline">
               <span className="text-primary">{">>"}</span>{" "}
@@ -71,6 +72,19 @@ export default async function Home({
               <span className="text-primary">{">>"}</span>{" "}
               <span>Shadcn UI just launched its new components!</span>
             </Link>
+          </div>
+          <div className="rounded p-4 mb-6 bg-card">
+            <div className="font-bold text-lg">Join Community</div>
+
+            <div className="w-full relative pt-[100%]">
+              <Image
+                src="./community.svg"
+                alt="profile"
+                objectFit="cover"
+                fill
+                className="w-full h-full top-0 left-0 object-cover rounded-2xl"
+              />
+            </div>
           </div>
         </div>
       </div>

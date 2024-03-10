@@ -3,6 +3,7 @@
 import { User } from "@/models/userSchema";
 import { connect } from "@/utils/dbConfig";
 import { getRouteLink, makeid } from "@/utils/helperFunctions";
+import { revalidatePath } from "next/cache";
 
 connect();
 
@@ -47,8 +48,11 @@ export async function updateUserDetails(userPayload: any) {
         fullName: userPayload.fullName,
         avatarURL: userPayload.avatarURL,
         designation: userPayload.designation,
+        githubURL: userPayload.githubURL,
       }
     );
+
+    if (updateResp) revalidatePath("/");
 
     return updateResp ?? null;
   } catch (err: any) {

@@ -1,4 +1,5 @@
 import { getUserPosts } from "@/actions/postActions";
+import { getUserDetails } from "@/actions/usersActions";
 import UserDetailsForm from "@/components/Forms/UserDetailsForm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,12 +12,13 @@ import React from "react";
 
 const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
+  const userDetails = await getUserDetails(session?.user?.email ?? "");
   // const userPosts = await getUserPosts("gauravavinyaminds@gmail.com");
 
   return (
     <>
       <div className="flex justify-center py-12">
-        <UserDetailsForm session={session} />
+        <UserDetailsForm userDetails={userDetails} />
       </div>
       {/* <div className="relative flex flex-col items-center rounded-[20px] w-full mx-auto p-4 bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
         <div className="relative flex h-64 w-full justify-center rounded-xl bg-gradient-to-t from-white dark:from-[#0c0a09] to-red-600 dark:to-red-600">

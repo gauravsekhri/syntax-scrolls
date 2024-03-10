@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ModeToggle } from "../ThemeButton";
 import { Home, Menu, PencilLine, Search, Users } from "lucide-react";
 import { Button } from "../../ui/button";
@@ -15,6 +15,7 @@ import {
 import { Separator } from "../../ui/separator";
 import SearchBar from "../SearchBar";
 import SideMenu from "./SideMenu";
+import DataWrapper from "./DataWrapper";
 
 type variant = "auth" | "public" | "private";
 
@@ -27,7 +28,7 @@ const PageHeader = ({
 }) => {
   return (
     <>
-      <div className="fixed top-0 left-0 w-full backdrop-blur-lg z-10">
+      <div className="bg-white/30 dark:bg-transparent fixed top-0 left-0 w-full backdrop-blur-lg z-10">
         <div className="container md:px-8 mx-auto flex items-center justify-between lg:py-8 px-4 py-4 ">
           <div className="flex items-center gap-4 lg:gap-8">
             <SideMenu session={session} />
@@ -98,7 +99,15 @@ const PageHeader = ({
                   </Button>
                 </Link>
 
-                <UserDD userDetails={session?.user ?? {}} />
+                {/* <UserDD userDetails={session?.user ?? {}} /> */}
+
+                <Suspense
+                  fallback={
+                    <div className="flex justify-center">Loading...</div>
+                  }
+                >
+                  <DataWrapper session={session} />
+                </Suspense>
               </>
             )}
           </div>

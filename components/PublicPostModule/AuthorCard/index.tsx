@@ -4,7 +4,7 @@ import React from "react";
 const AuthorCard = ({ userDetails }: { userDetails: any }) => {
   return (
     <>
-      <div className="flex flex-col justify-center p-12 shadow-md rounded-lg sm:px-12 dark:bg-card dark:text-gray-100">
+      <div className="flex flex-col justify-center p-12 shadow-md rounded-lg sm:px-12 bg-white dark:bg-card dark:text-gray-100">
         <img
           src={userDetails?.avatarURL}
           alt={userDetails?.fullName}

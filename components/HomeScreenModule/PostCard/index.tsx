@@ -32,7 +32,7 @@ const PostCard = (payload: IPostCard) => {
 
   return (
     <>
-      <div className="dark:bg-card p-4 sm:p-6 rounded-lg border dark:border-none mb-4">
+      <div className="bg-white dark:bg-card p-4 sm:p-6 rounded-lg border dark:border-none mb-4">
         <div className="flex justify-between items-center gap-4 mb-4">
           <div className="flex items-center gap-2">
             <Avatar>
