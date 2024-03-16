@@ -29,6 +29,8 @@ export async function generateMetadata(
 const PostPage = async ({ params }: { params: { routeLink: string } }) => {
   const postData: any = await getPostByLink(params.routeLink);
 
+  console.log("postData for " + params.routeLink + " :", postData);
+
   if (!postData) {
     redirect("/not found");
   }
