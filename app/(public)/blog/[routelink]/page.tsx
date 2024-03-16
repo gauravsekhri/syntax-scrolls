@@ -18,9 +18,9 @@ export async function generateMetadata(
   const postData: any = await getPostByLink(params.routeLink);
 
   return {
-    title: postData?.postDetails?.postTitle,
+    title: postData?.postDetails?.postTitle ?? "Blog Post",
     description:
-      postData?.postDetails?.metaDescription +
+      (postData?.postDetails?.metaDescription ?? "Open to explore") +
       " | Syntax Scrolls | Gaurav Sekhri",
     keywords: postData?.postDetails?.metaKeywords ?? [],
   };
@@ -29,10 +29,10 @@ export async function generateMetadata(
 const PostPage = async ({ params }: { params: { routeLink: string } }) => {
   const postData: any = await getPostByLink(params.routeLink);
 
-  console.log("postData for " + params.routeLink + " :", postData);
+  console.log("postData for " + params?.routeLink + " :", postData);
 
   if (!postData) {
-    redirect("/not found");
+    redirect("/notfound");
   }
 
   return (
