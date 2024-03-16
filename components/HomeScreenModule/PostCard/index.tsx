@@ -68,15 +68,9 @@ const PostCard = (payload: IPostCard) => {
               className="mr-3 text-xs sm:text-sm font-medium uppercase text-primary hover:text-primary-600 dark:hover:text-primary-400"
               href="/tags/next-js"
             >
-              {tagLabel}
+              {"#" + tagLabel}
             </Link>
           ))}
-          <Link
-            className="mr-3 text-xs sm:text-sm font-medium uppercase text-primary hover:text-primary-600 dark:hover:text-primary-400"
-            href="/tags/next-js"
-          >
-            #javascript
-          </Link>
         </div>
         <div className="text-xs sm:text-sm mt-2 text-gray-500 line-clamp-2 sm:line-clamp-3">
           {postDetails?.description ?? ""}

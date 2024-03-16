@@ -61,8 +61,8 @@ export default async function Home({
             />
           ))}
         </div>
-        <div className="col-span-3 left-0 right-0 h-fit hidden lg:block">
-          <div className="rounded p-4 mb-4 bg-card md:sticky top-36">
+        <div className="col-span-3 left-0 right-0 h-fit hidden lg:block md:sticky top-32">
+          <div className="rounded p-4 mb-4 bg-card">
             <div className="font-bold text-lg">Featured Blogs</div>
             <Link href="#" className="block my-4 hover:underline">
               <span className="text-primary">{">>"}</span>{" "}

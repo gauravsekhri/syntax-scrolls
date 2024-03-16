@@ -14,12 +14,24 @@ import { newPost } from "@/actions/postActions";
 import { toast } from "sonner";
 import { getRouteLink } from "@/utils/helperFunctions";
 import MultipleSelector, { Option } from "@/components/ui/multi-select";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircle, Terminal } from "lucide-react";
 
 type payloadKey = "content" | "routeLink" | "metaDescription" | "keyWords";
+
+interface ErrorList {
+  post: string[];
+  settings: string[];
+}
 
 const NewPostForm = ({ session }: { session: any }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("");
+  const [postTags, setPostTags] = useState<[]>([]);
+  const [errorList, setErrorList] = useState<ErrorList>({
+    post: [],
+    settings: [],
+  });
   const [postPayload, setPostPayload] = useState<postPayload>({
     routeLink: "",
     metaDescription: "",
@@ -32,6 +44,10 @@ const NewPostForm = ({ session }: { session: any }) => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    console.log(postPayload);
+  }, [postPayload]);
 
   const handleTitleChange = (value: string) => {
     setPostTitle(value);
@@ -57,17 +73,54 @@ const NewPostForm = ({ session }: { session: any }) => {
   };
 
   const handlePublish = async () => {
-    const finalPayload = {
-      postTitle,
-      ...postPayload,
-    };
+    let errorCount = 0;
+    let _errorList: ErrorList = { post: [], settings: [] };
 
-    const resp = await newPost(finalPayload);
+    // Little messy - will update it for sure
 
-    if (resp) {
-      toast.success("Publish success");
-    } else {
-      toast.error("Unable to publish");
+    if (postTitle.length == 0) {
+      _errorList.post.push("Post title is required.");
+      errorCount++;
+    }
+    if (postPayload.htmlContent.length == 0) {
+      _errorList.post.push("Content is required.");
+      errorCount++;
+    }
+    if (postTags.length == 0) {
+      _errorList.settings.push("Please select atleast one tag.");
+      errorCount++;
+    }
+    if (postPayload.routeLink.length == 0) {
+      _errorList.settings.push("Route link is required.");
+      errorCount++;
+    }
+    if (postPayload.metaDescription.length == 0) {
+      _errorList.settings.push("Description is required.");
+      errorCount++;
+    }
+    if (postPayload.keyWords.length == 0) {
+      _errorList.settings.push("Keywords is required.");
+      errorCount++;
+    }
+
+    setErrorList(_errorList);
+
+    if (errorCount == 0) {
+      const tags = postTags.map((ele: any) => ele.value);
+
+      const finalPayload = {
+        postTitle,
+        tags,
+        ...postPayload,
+      };
+
+      const resp = await newPost(finalPayload);
+
+      if (resp) {
+        toast.success("Publish success");
+      } else {
+        toast.error("Unable to publish");
+      }
     }
   };
 
@@ -90,8 +143,28 @@ const NewPostForm = ({ session }: { session: any }) => {
       <Tabs defaultValue="createPost" className="w-full">
         <div className="mb-4 flex justify-between items-center">
           <TabsList>
-            <TabsTrigger value="createPost">Create Post</TabsTrigger>
-            <TabsTrigger value="seoSettings">SEO Settings</TabsTrigger>
+            <TabsTrigger
+              value="createPost"
+              className="data-[state=active]:bg-white"
+            >
+              Create Post{" "}
+              {errorList.post.length > 0 && (
+                <span className="px-[5px] pt-[2px] bg-rose-600 text-white rounded-full ml-2 text-xs">
+                  {errorList.post.length}
+                </span>
+              )}
+            </TabsTrigger>
+            <TabsTrigger
+              value="seoSettings"
+              className="data-[state=active]:bg-white"
+            >
+              SEO Settings{" "}
+              {errorList.settings.length > 0 && (
+                <span className="px-[5px] pt-[2px] bg-rose-600 text-white rounded-full ml-2 text-xs">
+                  {errorList.settings.length}
+                </span>
+              )}
+            </TabsTrigger>
           </TabsList>
           <Button variant="default" onClick={() => handlePublish()}>
             Publish
@@ -103,20 +176,51 @@ const NewPostForm = ({ session }: { session: any }) => {
           "Please wait..."
         ) : (
           <>
-            <TabsContent value="createPost" className="px-8">
-              <textarea
-                className="overflow-hidden resize-none w-full outline-none bg-transparent text-3xl lg:text-5xl font-bold lg:font-extrabold mb-8 border-transparent focus:border-transparent focus:ring-0 focus:ring-offset-0 focus:outline-0 border-none "
-                placeholder="New post title here..."
-                // rows={1}
-                value={postTitle}
-                onChange={(event: any) => handleTitleChange(event.target.value)}
-              />
-              <CustomTextEditor
-                onChange={(val) => handleContentChange(val)}
-                initialContent={postPayload.blocksContent}
-              />
+            <TabsContent value="createPost">
+              {errorList.post.length > 0 && (
+                <Alert variant="destructive" className="mb-8">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>
+                    <ul className="list-disc list-inside">
+                      {errorList.post.map((ele: any) => (
+                        <li>{ele}</li>
+                      ))}
+                    </ul>
+                  </AlertDescription>
+                </Alert>
+              )}
+              <div className="px-8">
+                <textarea
+                  className="overflow-hidden resize-none w-full outline-none bg-transparent text-3xl lg:text-5xl font-bold lg:font-extrabold mb-8 border-transparent focus:border-transparent focus:ring-0 focus:ring-offset-0 focus:outline-0 border-none "
+                  placeholder="New post title here..."
+                  // rows={1}
+                  value={postTitle}
+                  onChange={(event: any) =>
+                    handleTitleChange(event.target.value)
+                  }
+                />
+                <CustomTextEditor
+                  onChange={(val) => handleContentChange(val)}
+                  initialContent={postPayload.blocksContent}
+                />
+              </div>
             </TabsContent>
             <TabsContent value="seoSettings">
+              {errorList.settings.length > 0 && (
+                <Alert variant="destructive" className="mb-8">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>
+                    <ul className="list-disc list-inside">
+                      {errorList.settings.map((ele: any) => (
+                        <li>{ele}</li>
+                      ))}
+                    </ul>
+                  </AlertDescription>
+                </Alert>
+              )}
+
               <div className="mb-12">Update your post's SEO settings.</div>
 
               <div className="grid gap-12">
@@ -125,6 +229,8 @@ const NewPostForm = ({ session }: { session: any }) => {
                   <MultipleSelector
                     defaultOptions={OPTIONS}
                     placeholder="Select tags..."
+                    value={postTags}
+                    onChange={(val: any) => setPostTags(val)}
                     emptyIndicator={
                       <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
                         No results found.

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import TagChip from "./TagChip";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Input } from "../ui/input";
 
 const TagsBox = () => {
   const searchParams = useSearchParams();
@@ -38,7 +37,7 @@ const TagsBox = () => {
 
   return (
     <>
-      <div className="col-span-3 relative md:sticky top-6 left-0 right-0 h-fit hidden md:block">
+      <div className="col-span-3 relative md:sticky top-6 left-0 right-0 h-fit hidden md:block md:sticky top-32">
         <div className="rounded p-4 bg-card">
           <span className="font-bold text-lg">Tags</span>
           {/* <div className="relative">

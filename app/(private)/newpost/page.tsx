@@ -13,7 +13,7 @@ const NewBlogPage = async () => {
         <div className="col-span-12 lg:col-span-8 bg-card p-6 rounded-lg shadow-lg border dark:border-gray-800">
           <NewPostForm session={session} />
         </div>
-        <div className="col-span-12 lg:col-span-4 bg-card p-6 rounded-lg relative md:sticky top-6 left-0 right-0 h-fit hidden md:block shadow-lg border dark:border-gray-800">
+        <div className="col-span-12 lg:col-span-4 bg-card p-6 rounded-lg relative md:sticky top-32 left-0 right-0 h-fit hidden md:block shadow-lg border dark:border-gray-800">
           <h1 className="font-bold text-xl mb-6">Tips</h1>
           <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             <li>
