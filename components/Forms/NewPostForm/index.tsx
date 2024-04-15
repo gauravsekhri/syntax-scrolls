@@ -145,7 +145,7 @@ const NewPostForm = ({ session }: { session: any }) => {
           <TabsList>
             <TabsTrigger
               value="createPost"
-              className="data-[state=active]:bg-white dark:data-[state=active]:bg-white"
+              className="data-[state=active]:bg-white dark:data-[state=active]:bg-card dark:data-[state=active]:text-primary"
             >
               Create Post{" "}
               {errorList.post.length > 0 && (
@@ -156,7 +156,7 @@ const NewPostForm = ({ session }: { session: any }) => {
             </TabsTrigger>
             <TabsTrigger
               value="seoSettings"
-              className="data-[state=active]:bg-white dark:data-[state=active]:bg-white"
+              className="ata-[state=active]:bg-white dark:data-[state=active]:bg-card dark:data-[state=active]:text-primary"
             >
               SEO Settings{" "}
               {errorList.settings.length > 0 && (

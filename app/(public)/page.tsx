@@ -64,13 +64,19 @@ export default async function Home({
         <div className="col-span-3 left-0 right-0 h-fit hidden lg:block md:sticky top-32">
           <div className="rounded p-4 mb-4 bg-card">
             <div className="font-bold text-lg">Featured Blogs</div>
-            <Link href="#" className="block my-4 hover:underline">
+            <Link
+              href="/blog/level-up-your-ui-game-with-shadcn-ui-beautifully-designed-accessible-and-open-source"
+              className="block my-4 hover:underline"
+            >
               <span className="text-primary">{">>"}</span>{" "}
-              <span>Release of NextJS 14 - All you need to know</span>
+              <span>
+                Level Up Your UI Game with Shadcn UI: Beautifully Designed,
+                Accessible, and Open Source
+              </span>
             </Link>
             <Link href="#" className="block my-4 hover:underline">
               <span className="text-primary">{">>"}</span>{" "}
-              <span>Shadcn UI just launched its new components!</span>
+              <span>Release of NextJS 14 - All you need to know</span>
             </Link>
           </div>
           <div className="rounded p-4 mb-6 bg-card">
