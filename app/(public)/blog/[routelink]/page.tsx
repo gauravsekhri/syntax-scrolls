@@ -26,14 +26,14 @@ export async function generateMetadata(
   };
 }
 
-const PostPage = async ({ params }: { params: { routeLink: string } }) => {
-  const postData: any = await getPostByLink(params.routeLink);
+const PostPage = async ({ params }: { params: { routelink: string } }) => {
+  const postData: any = await getPostByLink(params.routelink);
 
-  console.log("postData for " + params?.routeLink + " :", postData);
+  console.log("postData for " + params?.routelink + " :", postData);
 
-  if (!postData) {
-    redirect("/notfound");
-  }
+  // if (!postData) {
+  //   redirect("/notfound");
+  // }
 
   return (
     <>
@@ -50,7 +50,7 @@ const PostPage = async ({ params }: { params: { routeLink: string } }) => {
           </div>
         </div>
         <div className="col-span-12 lg:col-span-4 relative md:sticky top-6 left-0 right-0 h-fit hidden md:block">
-          <AuthorCard userDetails={postData.userDetails} />
+          <AuthorCard userDetails={postData?.userDetails} />
         </div>
       </div>
     </>

@@ -66,7 +66,7 @@ const PostCard = (payload: IPostCard) => {
           {postDetails?.tags.map((tagLabel: any) => (
             <Link
               className="mr-3 text-xs sm:text-sm font-medium uppercase text-primary hover:text-primary-600 dark:hover:text-primary-400"
-              href="/tags/next-js"
+              href={`/?tags=${tagLabel}`}
             >
               {"#" + tagLabel}
             </Link>
