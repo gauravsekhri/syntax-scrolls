@@ -31,9 +31,9 @@ const PostPage = async ({ params }: { params: { routelink: string } }) => {
 
   console.log("postData for " + params?.routelink + " :", postData);
 
-  // if (!postData) {
-  //   redirect("/notfound");
-  // }
+  if (!postData) {
+    redirect("/notfound");
+  }
 
   return (
     <>
@@ -49,7 +49,7 @@ const PostPage = async ({ params }: { params: { routelink: string } }) => {
             <PostReadyOnly postDetails={postData?.postDetails ?? ""} />
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-4 relative md:sticky top-6 left-0 right-0 h-fit hidden md:block">
+        <div className="col-span-12 lg:col-span-4 relative md:sticky top-32 left-0 right-0 h-fit hidden md:block">
           <AuthorCard userDetails={postData?.userDetails} />
         </div>
       </div>
