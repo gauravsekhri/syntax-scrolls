@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const FeaturesPage = () => {
   return (
@@ -81,6 +83,38 @@ const FeaturesPage = () => {
         </div>
       </section>
 
+      <div className="my-20">
+        <div className="font-semibold text-gray-400 uppercase mb-8 text-center">
+          Disclaimer
+        </div>
+        <div className="flex justify-center gap-10">
+          <div className="flex justify-center flex-col items-center bg-card p-6 rounded-md max-w-56 min-h-48">
+            <div className="line-through mb-4 text-xl text-gray-500 text-center">
+              Clone
+            </div>
+            <div className="text-green-600 font-bold text-xl text-center">
+              Self Designed & Developed
+            </div>
+          </div>
+          <div className="flex justify-center flex-col items-center bg-card p-6 rounded-md max-w-56 min-h-48">
+            <div className="line-through mb-4 text-xl text-gray-500 text-center">
+              Corporate Project
+            </div>
+            <div className="text-green-600 font-bold text-xl text-center">
+              Personal Project
+            </div>
+          </div>
+          <div className="flex justify-center flex-col items-center bg-card p-6 rounded-md max-w-56 min-h-48">
+            <div className="line-through mb-4 text-xl text-gray-500 text-center">
+              Freelancing Project
+            </div>
+            <div className="text-green-600 font-bold text-xl text-center">
+              Skill Development Project
+            </div>
+          </div>
+        </div>
+      </div>
+
       <section className="mt-12 mb-4">
         <div className="gap-8 items-center py-8 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
           <Image
@@ -150,6 +184,76 @@ const FeaturesPage = () => {
             height={585}
             layout="responsive"
           />
+        </div>
+      </section>
+
+      <section className="mt-12 mb-4">
+        <div className="gap-8 items-center py-8 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+          <Image
+            className="w-full dark:hidden"
+            src="/marketing/marketing-3-light.jpg"
+            alt="dashboard image"
+            width={420}
+            height={585}
+            layout="responsive"
+          />
+          <Image
+            className="w-full hidden dark:block"
+            src="/marketing/marketing-3.jpg"
+            alt="dashboard image"
+            width={420}
+            height={585}
+            layout="responsive"
+          />
+          <div className="mt-4 md:mt-0">
+            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+              <span className="dark:text-primary">Enhance Your Focus</span>
+              <br />A Readable Interface for Optimal Coding.
+            </h2>
+            <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+              The platform strikes the perfect balance between clean aesthetics
+              and functionality. Enjoy beautifully rendered code with high
+              readability, allowing you to concentrate on the logic and syntax
+              without visual distractions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="w-full flex items-center justify-center">
+          <div className="relative w-full max-w-2xl my-8 md:my-16 flex flex-col items-start space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 px-4 py-8 border-2 border-dashed border-gray-400 dark:border-gray-400 shadow-lg rounded-lg">
+            <span className="absolute text-xs font-medium top-0 left-0 rounded-br-lg rounded-tl-lg px-2 py-1 bg-primary-100 dark:bg-gray-900 dark:text-gray-300 border-gray-400 dark:border-gray-400 border-b-2 border-r-2 border-dashed ">
+              author
+            </span>
+
+            <div className="w-full flex justify-center sm:justify-start sm:w-auto">
+              <img
+                className="object-cover w-24 h-24 mt-3 mr-8 rounded-full"
+                alt="Gaurav Sekhri"
+                src="https://media.licdn.com/dms/image/C4E03AQF5zmcpybd60g/profile-displayphoto-shrink_200_200/0/1599937172055?e=1718841600&v=beta&t=VfSMwzdg4f3iej6rgfQIYjzSkcVUAoBzYZ7kctDlNno"
+              />
+            </div>
+
+            <div className="w-full sm:w-auto flex flex-col items-center sm:items-start">
+              <p className="font-display mb-2 text-2xl font-semibold dark:text-gray-200">
+                Gaurav Sekhri
+              </p>
+
+              <div className="mb-4 md:text-lg text-gray-400">
+                <p>Fullstack Developer</p>
+              </div>
+
+              <div className="flex gap-3 items-center">
+                <Link href="/user/gauravsekhri@syntaxscrolls.com">
+                  <Button variant="outline">View Profile</Button>
+                </Link>
+                <Link href="https://www.linkedin.com/in/gaurav-sekhri/">
+                  <Button>Hire Me</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
