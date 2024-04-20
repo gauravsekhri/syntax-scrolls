@@ -26,7 +26,9 @@ export async function signupUser(userPayload: any) {
 
     const finalPayload = {
       username: newUsername,
-      ...userPayload,
+      fullName: userPayload?.fullName ?? "",
+      email: userPayload?.email ?? "",
+      password: userPayload?.password ?? "",
     };
 
     console.log(finalPayload);
