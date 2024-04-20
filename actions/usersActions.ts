@@ -21,12 +21,15 @@ export async function loginUser(userPayload: any) {
 
 export async function signupUser(userPayload: any) {
   try {
-    let newUsername = getRouteLink(userPayload.fullName) + "-" + makeid(5);
+    let newUsername =
+      getRouteLink(userPayload?.fullName ?? "") + "-" + makeid(5);
 
     const finalPayload = {
       username: newUsername,
       ...userPayload,
     };
+
+    console.log(finalPayload);
 
     const newUser = await new User({ ...finalPayload });
     const userResp = await newUser.save();
